@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'eraser';
+    src:url('eraserRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+#welcome{
+font-family: 'eraser', sans-serif;
+background-image:url(chalkboard.jpg);
+height:auto;
+color:white;
+text-align:center;
+   border: #2e1a12 solid 20px;
+    -webkit-border-image: url('wood.png') 100 stretch;
+    -moz-border-image: url('wood.png') 100 stretch;
+    border-image: url('wood.png') 100 stretch;
+}
+p.title{
+font-size:500%;
+
+}
+#Home,#Notation,#Recurrence,#MathInduction,#Test,#Review
+{
+ margin: 0 auto;
+height:auto;
+}
+.result{
+width:30%;
+float:left;
+margin-top:100px;
+}
+
+#buttonsarea{
+    height:100px;
+    width:100%;
+}
+.arrow{
+font-size: 25px;
+color:green;
+}
+.column2,.column3,.column4,.column5{
+    padding-top: 20px;
+    padding-left: 50px;
+}
+#findDifference{
+    width:50%;
+    height:auto;
+
+    float:left;
+    margin-top:125px;
+}
+#Difference{
+
+    height:80px;
+    background-color:white;
+    color:black;
+}
+
+button{
+width:100px;
+background:white;
+color:black;
+height:60px;
+margin-top:50px;
+margin-bottom:50px;
+}
+.numberInput{
+
+    width:20%;
+    border-color: black;
+}
+#Recurrence{
+    left:0;
+    
+}
+
+#logInForm{
+margin-top:50px;
+display:block;
+color:white;
+}
+#logInForm label{
+display:inline-block;
+width: 100px;
+}
+#logInForm #inputdiv{
+display:inline-block;
+
+}
+input{
+border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.0);
+    margin: 0 0 10px 0;
+
+}
+.container{
+background-color: white;
+}
+.nav-tabs{
+  background-color:white;
+  color:white;
+font-size: 150%;
+}
+
+.modal-body{
+    background-image: url(chalkboard.jpg);
+    color:white;
+}
+
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%;
+}
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+#usernametxt,#passwordtxt{
+width:30%;
+margin: 0 auto;
+}
+.form-group{
+    width:50%;
+    margin: 0 auto;
+
+}
+img  {
+ 
+}
+#logo{
+    height:50px;
+    width:50px;
+    top:50;
+    left:0;
+    background-image: url('logo.svg.png');
+}
+#recsubmit{
+    margin: 0 auto;
+}
+#username, #password{
+bottom:2;
+color:black;
+}
+.nav-tabs{
+margin-top:50px;
+
+
+}
+.nav-tabs li a{
+color:black;
+}
+.nav-tabs .active{
+
+}
