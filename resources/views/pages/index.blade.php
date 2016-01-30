@@ -134,7 +134,15 @@
 <div id = "testHeader">Test yourself</div>
 
 <button id = "start">Start the test</button>
-<div id ="questions">Test has started</div>
+<div id ="questions">Test has started
+
+<div class="col-offset-6 centered">
+
+
+</div>
+
+</div>
+
 </div>
 <div id = "Review">
 </div>
@@ -143,6 +151,7 @@
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
 <script src="jquery.js"></script>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">

@@ -17,7 +17,10 @@ Route::post('register', [ 'as' => 'register', 'uses' => 'WelcomeController@store
 //Route::post('recurrence', ['as' => 'recurrence', 'uses' => 'RecurrenceController@recurrence']);
 Route::get('index', 'WelcomeController@index');
 
+
 Route::resource('sessions', 'SessionsController');
+  Route::get('/',array('as'=>'quiz','uses'=>'QuestionControllers@index'));
+  Route::resource('question','QuestionController');
 
 //Route::get('login', 'LoginController@login');
 //Route::post('register', 'WelcomeController@store');

@@ -25,6 +25,9 @@ class User extends Model implements Authenticatable
      *
      * @var array
      */
+    public function questions () {
+        return $this->hasMany('App\Question');
+    }
 	 public function getRememberToken()
 {
     return $this->remember_token;
