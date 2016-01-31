@@ -4,8 +4,9 @@ body{
     background-color:#A27AFE;
     font-family: 'Alegreya', serif;
 
+
 }
-#welcome{
+.jumbotron{
 font-family: 'eraser', sans-serif;
 background-image:url(toh.jpg);
 background-size: cover;
@@ -21,14 +22,27 @@ font-size:800%;
 {
  margin: 0 auto;
 height:auto;
+font-size: 2em;
 }
 .result{
-width:30%;
+width:auto;
+margin-right: 10px;
 float:left;
 margin-top:100px;
 }
+#closedForm{
+
+}
+
 .form-control{
    border: 5px solid #A27AFE; 
+}
+#loginbutton{
+
+    background-color: white;
+}
+#registerbutton{
+background-color:white;
 }
 #logInForm{
 margin-top:50px;
@@ -65,44 +79,65 @@ border: 5px solid #A27AFE;
     width:100%;
 }
 .arrow{
-font-size: 25px;
-color:green;
+font-size: ;
+color:blue;
 }
 .column2,.column3,.column4,.column5{
-    padding-top: 20px;
+    padding-top: 30%;
     padding-left: 50px;
 }
 #findDifference{
-    width:50%;
+    width:auto;
     height:auto;
 
     float:left;
     margin-top:125px;
 }
-#Difference{
-
+#Difference, #Difference2{
     height:80px;
     background-color:white;
     color:black;
 }
+#Difference2 .arrow{
+    color:red;
+}
 
 button{
-width:100px;
-background:white;
+width:auto;
+background: #86BCFF
 color:black;
-height:60px;
+height:auto;
 margin-top:50px;
 margin-bottom:50px;
 }
-.numberInput{
 
-    width:20%;
-    border-color: black;
+.numberInput,.sequenceval, .guess{
+border: 5px solid #A27AFE; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.0);
+    margin: 0 0 10px 0;
+    width:65px;
+}
+td{
+    width:;
 }
 #Recurrence{
     left:0;
     
 }
+table{
+    margin: 0 auto;
+}
+
 
 
 .container{
@@ -115,8 +150,9 @@ font-size: 150%;
 }
 
 .modal-body{
-    background-image: url(chalkboard.jpg);
-    color:white;
+    background-image: url(toh.jpg);
+    color:blue;
+    background-size: cover;
 }
 
 .modal-body .form-horizontal .col-sm-2,

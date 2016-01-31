@@ -1,10 +1,10 @@
 $(document).ready(function(){
  //hiding all the divs apart from home as it needs to be displayed on initial viewing
-$("#Notation, #Recurrence,#MathInduction, #Test, #Review").hide();
+$("#Notation, #Recurrence,#MathInduction, #Test, #Review,#quadratic").hide();
 //on the click of a tab
 $(".nav li a").click(function(evt){
 //hiding all the divs including home once this button is clicked as a new one will appear when another tab is clicked.
-$("#Home, #Notation, #Recurrence,#MathInduction, #Test, #Review").hide();
+$("#Home, #Notation, #Recurrence,#MathInduction, #Test, #Review,#quadratic").hide();
 //link clicked becomes the text of the tab
 linkclicked = $(this).text();
 		  //Switch on the text value passed in, which will determin its outcome using a case
@@ -25,12 +25,13 @@ linkclicked = $(this).text();
             case "Test Yourself":
             $("#Test").show();
             break;
-            case "Review":
+            case "Review ":
             $("#Review").show();
             break;
 			default:
 			$("#Home" ).show();	
 			break;
+
           }
 		  });
 
@@ -59,6 +60,9 @@ if (count ==5){
 });
 
 $('#recsubmit').click(function(){
+
+	$numbers.length = 0;
+	$answers.length = 0;
 	$("#findDifference").empty();
 $(".result").empty();
 	$("#findDiff").hide();
@@ -69,6 +73,8 @@ $firstnumber = parseInt($('#firstnumber').val(), 10);
 $secondnumber = parseInt($('#secondnumber').val(), 10); 
 $thirdnumber = parseInt($('#thirdnumber').val(), 10);
 	//$i = 1;
+	//$(".result").append("<p>Work out the values for the recurrence relation above and enter the answers below</p>");
+
 	$(".result").append(("U(1) = "+$n +"<br />"));
 	for (var i = 2; i<=6; i++){
 		$answer = $firstnumber*$n+($secondnumber*i)+$thirdnumber;
@@ -76,26 +82,34 @@ $thirdnumber = parseInt($('#thirdnumber').val(), 10);
 	$answers.push("U("+i+") = <input type = 'text' class ='sequenceval' id="+$answer+" placeholder ='Enter the value'/>"+$answer +"<br /> ");
 }
 $(".result").append($answers);
-$(".result").append("")
+var offset = $('.sequenceval').offset();
+$('html, body').animate({
+    scrollTop: offset.top,
+    scrollLeft: offset.left
 });
+$(".result").append("");
+});
+
 $("#findDifference").hide();
 
 $("#findDiff").click(function(){
 $("#findDifference").empty();
 var values = jQuery.unique( $numbers );
 $("#findDifference").show();
+$n =  parseInt($('#initialnumber').val(), 10);
 var first = $(".sequenceval").eq(0).attr("id");
 var second = $(".sequenceval").eq(1).attr("id");
 var third = $(".sequenceval").eq(2).attr("id");
 var fourth = $(".sequenceval").eq(3).attr("id");
 var fifth = $(".sequenceval").eq(4).attr("id");
 
+var initialDifference  = first -$n;
 var firstDifference = second - first;
 var secondDifference = third - second;
 var thirdDifference = fourth - third;
 var fourthDifference = fifth - fourth;
 var html = "<table>";
-
+html += "<tr><td><div id = 'Difference'><p class = 'arrow'>&#8680;"+initialDifference+"</p></div></td><td class = 'column1'></td></tr>";
 html += "<tr><td><div id = 'Difference'><p class = 'arrow'>&#8680;"+firstDifference+"</p></div></td><td class = 'column2'></td></tr>";
 html += "<tr><td><div id = 'Difference'><p class = 'arrow'>&#8680;"+secondDifference+"</p></div></td><td class = 'column3'></td></tr>";
 html +="<tr><td><div id = 'Difference'><p class = 'arrow'>&#8680;"+thirdDifference+"</p></div></td><td class = 'column4'></td></tr>";
@@ -107,13 +121,43 @@ if ((firstDifference == secondDifference) && (secondDifference==thirdDifference)
 	alert("all values are equal");
 }else{
 
-var firstDifference = secondDifference - firstDifference;
-var secondDifference = thirdDifference - secondDifference;
-var thirdDifference = fourthDifference - thirdDifference;
-$('.column2').append("<div id = 'Difference'><p class = 'arrow'>&#8680;"+firstDifference+"</p></div>");
-$('.column3').append("<div id = 'Difference'><p class = 'arrow'>&#8680;"+secondDifference+"</p></div>");
-$('.column4').append("<div id = 'Difference'><p class = 'arrow'>&#8680;"+thirdDifference+"</p></div>");
+var initialDifference2 = firstDifference - initialDifference;
+var firstDifference2 = secondDifference - firstDifference;
+var secondDifference2 = thirdDifference - secondDifference;
+var thirdDifference2 = fourthDifference - thirdDifference;
+$('.column1').append("<div id = 'Difference2'><p class = 'arrow'>&#8680;"+initialDifference2+"</p></div>");
+$('.column2').append("<div id = 'Difference2'><p class = 'arrow'>&#8680;"+firstDifference2+"</p></div>");
+$('.column3').append("<div id = 'Difference2'><p class = 'arrow'>&#8680;"+secondDifference2+"</p></div>");
+$('.column4').append("<div id = 'Difference2'><p class = 'arrow'>&#8680;"+thirdDifference2+"</p></div>");
 }
+$("#findDifference").append("<button id ='closedForm'>Generate Closed Form Expression</button>");
+var offset = $('#closedForm').offset();
+$('html, body').animate({
+    scrollTop: offset.top,
+    scrollLeft: offset.left
+});
+$("#closedForm").click(function(){
+
+var a = firstDifference2 / 2;
+var b = initialDifference - 3*a;
+var findc = a+b;
+var c = $n -findc;
+$("#closedFormArea").append("Tn = "+"<input type ='text' id = "+a+" class ='guess'/>n&#178; +<input type ='text' id = "+b+" class ='guess'/>n +<input type ='text' id = "+c+" class ='guess'/>"); 
+
+});
+
+});
+
+
+$( '#closedFormArea' ).on( 'keyup', '.guess', function () {  
+var value = parseInt($(this).val(), 10);
+var aID = $(this).attr("id");
+if (value == aID){
+$(this).css('border', '3px solid green'); 
+}else{
+	//count--;
+	$(this).css('border', '3px solid red'); 
+}   
 });
 $("#start").show();
 $("#questions").hide();

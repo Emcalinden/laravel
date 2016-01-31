@@ -5,7 +5,7 @@
 <head><title>Document</title></head>
 <body>
 <div class = 'container'>
-<section id = 'welcome'>
+<section class = 'jumbotron'>
 
 <p class = "title">{!! $title !!}</p>
 {!! Form::open(['route' => 'sessions.store']) !!}
@@ -91,12 +91,13 @@
 <div id = "Notation">
 </div>
 <div id = "Recurrence">
-
-<table style="width:100%">
+Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
+will be asked to enter the sequence once you submit. 
+<table>
   <tr>
     <td>
-	<label>U(n+1) = </label></td>
-    <td><input type = "text" id = "firstnumber" class ="numberInput"></input></td>
+	<label>U(n) = </label></td>
+    <td><input type = "text" id = "firstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
 	<td><label>U(n) +</label></td>
 	<td><input type = "text" id = "secondnumber" class ="numberInput"></input></td>
 	<td><label>n +</label></td>
@@ -115,17 +116,9 @@
  <button id = "recsubmit">Submit</button>
  <button id ='findDiff'>Find Difference</button>
  </div>
-<div class = "result">
-
-
-</div>
-
-<div id = "findDifference">
-  
-
-
-</div>
-
+<div class = "result"></div>
+<div id = "findDifference"></div>
+<div id = "closedFormArea"></div>
 </div>
 <div id = "MathInduction">
 </div>
