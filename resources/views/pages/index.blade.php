@@ -2,7 +2,10 @@
 <html>
 <meta name="env" content="{{ App::environment() }}">
 <!--meta name="token" content="{{ Session::token() }}"-->
-<head><title>Document</title></head>
+<head><title>Document</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="style.css"></head>
 <body>
 <div class = 'container'>
 <section class = 'jumbotron'>
@@ -31,7 +34,7 @@
 			  <li><a data-target="#notation" data-toggle="tab">Notation</a></li>
 			  <li><a data-target="#recurrence" data-toggle="tab">Recurrence relation</a></li>
 			  <li><a data-target="#mathinduction" data-toggle="tab">Mathematical Induction</a></li>
-			  <li><a data-target="#test" data-toggle="tab">Test Yourself</a></li>
+			  <li><a data-target="#test" data-toggle="tab" name = "test">Test Yourself</a></li>
 			  <li><a data-target="#review" data-toggle="tab">Review </a></li>
 </ul>
 
@@ -116,6 +119,7 @@ will be asked to enter the sequence once you submit.
  <button id = "recsubmit">Submit</button>
  <button id ='findDiff'>Find Difference</button>
  </div>
+ 
 <div class = "result"></div>
 <div id = "findDifference"></div>
 <div id = "closedFormArea"></div>
@@ -146,9 +150,7 @@ will be asked to enter the sequence once you submit.
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
 <script src="jquery.js"></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="style.css">
+
 
 </body>
 

@@ -3,7 +3,7 @@ body{
 
     background-color:#A27AFE;
     font-family: 'Alegreya', serif;
-
+cursor: pointer;
 
 }
 .jumbotron{
@@ -25,15 +25,38 @@ height:auto;
 font-size: 2em;
 }
 .result{
-width:auto;
-margin-right: 10px;
-float:left;
+width:400px;
+
 margin-top:100px;
+margin: 0 auto;
+
+}
+
+#recurrencefull{
+
+}
+#test1,#test2,#test3,#test4,#test5{
+
+    width:300px;
+    height: 30px;
+    text-align: right;
+
+}
+#second1,#second2,#second3,#second4,#second5{
+    width:350px;
+    padding-top: 20px;
+    height:25px;
+    text-align: right;
+    color:purple;
 }
 #closedForm{
-
+bottom: 0;
 }
 
+#closedFormArea{
+width:500px;
+margin: 0 auto;
+}
 .form-control{
    border: 5px solid #A27AFE; 
 }
@@ -76,25 +99,25 @@ border: 5px solid #A27AFE;
 
 #buttonsarea{
     height:100px;
-    width:100%;
+    width:400px;
+    margin:0 auto;
 }
 .arrow{
 font-size: ;
 color:blue;
 }
-.column2,.column3,.column4,.column5{
-    padding-top: 30%;
+.column1,.column2,.column3,.column4,.column5{
+    padding-top: 20%;
     padding-left: 50px;
 }
 #findDifference{
     width:auto;
     height:auto;
 
-    float:left;
-    margin-top:125px;
+    margin-top:30px;
 }
 #Difference, #Difference2{
-    height:80px;
+    height:90px;
     background-color:white;
     color:black;
 }
@@ -104,13 +127,15 @@ color:blue;
 
 button{
 width:auto;
-background: #86BCFF
+background: #86BCFF;
 color:black;
 height:auto;
 margin-top:50px;
 margin-bottom:50px;
 }
-
+.table{
+    margin: 0 auto;
+}
 .numberInput,.sequenceval, .guess{
 border: 5px solid #A27AFE; 
     -webkit-box-shadow: 
@@ -124,22 +149,19 @@ border: 5px solid #A27AFE;
             0 0 16px rgba(0,0,0,0.1); 
     padding: 15px;
     background: rgba(255,255,255,0.0);
-    margin: 0 0 10px 0;
     width:65px;
+    
 }
 td{
     width:;
 }
 #Recurrence{
-    left:0;
+    margin:0 auto;
     
 }
-table{
+table, tr{
     margin: 0 auto;
 }
-
-
-
 .container{
 background-color: white;
 }
