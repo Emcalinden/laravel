@@ -46,6 +46,7 @@ $('html, body').animate({
     scrollLeft: offset.left
 });	
 }
+var a,b,findc,c;
 $( '.result' ).on( 'keyup', '.sequenceval', function () { 
 
 var index = $( ".sequenceval" ).index( this );
@@ -100,7 +101,7 @@ $(".result").append("");
 });
 
 $("#findDifference").hide();
-
+var operator;
 $("#findDiff").click(function(){
 $("#findDifference").empty();
 $("#test1,#test2,#test3,#test4,#test5").empty();
@@ -143,37 +144,130 @@ $('#second4').append("<p class = 'arrow'>&#8680;"+thirdDifference2+"</p>");
 $("#closedFormArea").append("<button id ='closedForm'>Generate Closed Form Expression</button><br />");
  move("#closedForm");
 
+a = firstDifference2 / 2;
+b = initialDifference - 3*a;
+findc = a+b;
+c = $n -findc;
+
 $("#closedForm").click(function(){
 
-var a = firstDifference2 / 2;
-var b = initialDifference - 3*a;
-var findc = a+b;
-var c = $n -findc;
-var operator;
 if(c<0){
 	operator = "-";
  c =Math.abs(c);
 }else{
 	operator = "+";
 }
+
 $("#closedFormArea").append("Tn = "+"<input type ='text' id = "+a+" class ='guess'/>n&#178; +<input type ='text' id = "+b+" class ='guess'/>n "+operator+"<input type ='text' id = "+c+" class ='guess'/>"); 
  move(".guess");
 });
-
 });
-
 $closedformAnswers = [];
+var reccount=0;
+
 $( '#closedFormArea' ).on( 'keyup', '.guess', function () {  
+	$("#checkAny").empty();
 var value = $(this).val();
 var aID = $(this).attr("id");
 if (value == aID){
 $(this).css('border', '3px solid green'); 
-
+$closedformAnswers.push(aID);
+reccount++;
+$(this).prop("readonly", true);
 }else{
-	//count--;
+	
 	$(this).css('border', '3px solid red'); 
 }   
+if(reccount ==3){
+$( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a term to see if it is true far:U(<input type ='text' id ='term'/>)<br />= <div id ='termAns'></div></div>");
+move("#checkAny");
+}
 });
+
+$("#closedFormArea").on("keyup", "#term", function(){
+	$("#termAns").empty();
+	$("#proof").empty();
+	$("#proofbutton").empty();
+var userinput = $(this).val();
+var firstterm = (userinput *userinput)*a;
+var secondterm = b * userinput;
+ c =-Math.abs(c);
+var thirdterm = c;
+var answer;
+if(thirdterm<0){
+answer = (firstterm + secondterm) + thirdterm;
+}else{
+answer = firstterm + secondterm+ thirdterm;
+}
+if(userinput == ""){
+	$("#termAns").empty();
+}
+$("#termAns").append(answer);
+move("#termAns");
+$("#closedFormArea").append("<div id = 'proofbutton'><button id = 'proof'>Proof by Mathematical Induction</div></div>");
+var closedFormEq = "U(n) = " +a +"nn&#178; + " + "3("+b +")"+ operator +" "+ c;
+$("#proof").one('click', function(e){
+e.preventDefault();
+$("#closedFormArea").append("<div id ='proofMessage'>Go to the Mathematical Induction tab<br /><a href = '#' id = 'backtotop'>Back to top</a></div>");
+move("#proofMessage");
+$("#backtotop").click(function(){
+move(".jumbotron");
+});
+
+$("#step1").append("Step 1");
+$("#step1Eq").append(closedFormEq +"<br /> Lets see if it is true for n=1: <br />");
+$('#step1Eq' ).append("<br /><div id = 'checkAny'>Enter a term to see if it is true far:U(<input type ='text' id ='term'/>)<br />= <div id ='firstTermAnswer'></div></div>");
+});
+});
+$("#step1Eq").on("keyup", "#term", function(){
+	$("#error").empty();
+	$("#true").empty();
+	$("#step2Eq").empty();
+	$("#step3Eq").empty();
+	$("#step2").empty();
+	$("#step3").empty();
+$("#firstTermAnswer").empty();
+var userinput = $(this).val();
+var firstterm = (userinput *userinput)*a;
+var secondterm = b * userinput;
+var thirdterm = c;
+var answer;
+if(thirdterm<0){
+answer = (firstterm + secondterm) + thirdterm;
+}else{
+answer = firstterm + secondterm+ thirdterm;
+}
+if(userinput == ""){
+	$("#termAns").empty();
+	$("#error").empty();
+	$("#true").empty();
+}else if(userinput != 1){
+$("#error").empty();
+$("#true").empty();
+var error = "<div id ='error'>You can only enter 1.</div>";
+$("#step1Eq").append(error);
+move("#error");
+}else{
+	$("#error").empty();
+	$("#true").empty();
+	$("#step2Eq").val('');
+	$("#step3Eq").val('');
+	
+	$(this).prop("readonly", true);
+	$("#firstTermAnswer").append(answer);
+	$("#firstTermAnswer").append("<div id = 'true'>TRUE!</div>");
+move("#firstTermAnswer");
+$("#step2").append("Step 2");
+$("#step2Eq").append("Let's assume n=k");
+move("#step2Eq");
+$("#step3").append("Step 3");
+$("#step3Eq").append("Let's check if n=k+1");
+move("#step3Eq");
+}
+
+});
+
+
 $("#start").show();
 $("#questions").hide();
 $("#start").click(function(){

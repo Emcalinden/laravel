@@ -33,7 +33,7 @@
 			  <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
 			  <li><a data-target="#notation" data-toggle="tab">Notation</a></li>
 			  <li><a data-target="#recurrence" data-toggle="tab">Recurrence relation</a></li>
-			  <li><a data-target="#mathinduction" data-toggle="tab">Mathematical Induction</a></li>
+			  <li><a href="#induction" data-target="#mathinduction" data-toggle="tab" name ="induction">Mathematical Induction</a></li>
 			  <li><a data-target="#test" data-toggle="tab" name = "test">Test Yourself</a></li>
 			  <li><a data-target="#review" data-toggle="tab">Review </a></li>
 </ul>
@@ -96,7 +96,7 @@
 <div id = "Recurrence">
 Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
 will be asked to enter the sequence once you submit. 
-<table>
+<table id ='recTable'>
   <tr>
     <td>
 	<label>U(n) = </label></td>
@@ -119,12 +119,27 @@ will be asked to enter the sequence once you submit.
  <button id = "recsubmit">Submit</button>
  <button id ='findDiff'>Find Difference</button>
  </div>
- 
+ <div class='row'>
+ <div class = 'col-md-4'></div>
+ <div class ='col-md-4'>
 <div class = "result"></div>
 <div id = "findDifference"></div>
 <div id = "closedFormArea"></div>
 </div>
+<div class ='col-md-4'>
+
+</div>
+</div>
+
+</div>
 <div id = "MathInduction">
+
+<table class = "inductionTable">
+  <tr><td id='step1'></td><td id ='step1Eq'></td><td></td></tr>
+  <tr><td id ='step2'></td><td id ='step2Eq'></td><td></td></tr>
+  <tr><td id ='step3'></td><td id ='step3Eq'></td><td></td></tr>
+</table>
+
 </div>
 <div id = "Test">
 
