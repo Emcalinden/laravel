@@ -205,7 +205,7 @@ if(userinput == ""){
 $("#termAns").append(answer);
 move("#termAns");
 $("#closedFormArea").append("<div id = 'proofbutton'><button id = 'proof'>Proof by Mathematical Induction</div></div>");
-var closedFormEq = "U(n) = " +a +"nn&#178; + " + "3("+b +")"+ operator +" "+ c;
+var closedFormEq = "U(n) = " +a +"n&#178; + " + "3(n)"+ operator +" "+ c;
 $("#proof").one('click', function(e){
 e.preventDefault();
 $("#closedFormArea").append("<div id ='proofMessage'>Go to the Mathematical Induction tab<br /><a href = '#' id = 'backtotop'>Back to top</a></div>");
@@ -258,7 +258,8 @@ move("#error");
 	$("#firstTermAnswer").append("<div id = 'true'>TRUE!</div>");
 move("#firstTermAnswer");
 $("#step2").append("Step 2");
-$("#step2Eq").append("Let's assume n=k");
+$("#step2Eq").append("Let's assume n=k <br /><br />U(k) = " +a +"k&#178; + " + "3(k)"+ operator +" "+ c);
+
 move("#step2Eq");
 $("#step3").append("Step 3");
 $("#step3Eq").append("Let's check if n=k+1");
