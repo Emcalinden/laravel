@@ -1,61 +1,72 @@
 
 body{
-
-    background-color:#A27AFE;
-    font-family: 'Alegreya', serif;
+background-color:#A27AFE;
+font-family: 'Alegreya', serif;
 cursor: pointer;
+font-size: 160%;
 
 }
 .jumbotron{
 font-family: 'eraser', sans-serif;
 background-image:url(toh.jpg);
-background-size: cover;
-height:450px;
+background-size: 100% 100%;
+height:auto;
 color:purple;
 text-align:center;
-
 }
+
 p.title{
-font-size:800%;
+font-size:500%;
 }
 #Home,#Notation,#Recurrence,#MathInduction,#Test,#Review
 {
  margin: 0 auto;
 height:auto;
-font-size: 2em;
 }
+#centerCol{
+
+width:;
+}
+
 .result{
 width:;
-
-margin-top:100px;
+margin-top:10px;
 margin: 0 auto;
-
 }
 
-#recurrencefull{
-
-}
 #test1,#test2,#test3,#test4,#test5{
 
-    width:300px;
-    height: 30px;
+    width:200px;
+    height: 20px;
     text-align: right;
+    color:green;
+    font-size: 1em;
 
+}
+#firstdifftext{
+    width:50px;
+    text-align: right
+}
+#firstdifftext{
+    width:70px;
+    text-align: right
 }
 #second1,#second2,#second3,#second4,#second5{
-    width:350px;
+    width:250px;
     padding-top: 20px;
     height:25px;
+     font-size: 1em;
     text-align: right;
-    color:purple;
+    color:red;
 }
 #closedForm{
-bottom: 0;
 }
-
+.container{
+    width:80%;
+}
 #closedFormArea{
-width:500px;
-margin: 0 auto;
+width:100%;
+top:0;
 }
 .form-control{
    border: 5px solid #A27AFE; 
@@ -66,7 +77,13 @@ margin: 0 auto;
 }
 #registerbutton{
 background-color:white;
+font-size: 1.5em;
 }
+#myTab{
+font-size: 1em;
+}
+#myTab li a { border-color: #75ECFD;background-color:#D698FE; }
+#myTab li.active a {border-bottom-color: transparent;background-color:#A095EE; }
 #logInForm{
 margin-top:50px;
 display:block;
@@ -98,7 +115,7 @@ border: 5px solid #A27AFE;
 }
 
 #buttonsarea{
-    height:100px;
+    height:auto;
     width:400px;
     margin:0 auto;
 }
@@ -144,20 +161,33 @@ margin-bottom:50px;
 #recTable{
     margin: 0 auto;
 }
-table#inductionTable{
+#rec1,#rec2,#rec3{
+    width:33%;
+    margin-right: 25px;
+}
+table.inductionTable{
     width:100%;
     margin: 0 auto;
 }
-table#inductionTable{
-    width:30%;
+table.recurrenceTable{
+    width:100%;
     margin: 0 auto;
 }
-
+table.recurrenceTable td{
+    width:50px;
+    margin: 0 auto;
+}
+table.inductionTable tr{
+margin-top:20px;
+}
 #error{
 color:red;
 
 }
-#step1{
+#rec2{
+    
+}
+#step1, #trueorFalse{
     width:200px;
     color:blue;
     margin-top: 50px;
@@ -173,8 +203,11 @@ color:red;
     color:blue;
     margin-top: 50px;
 }
-#step1Eq,#step2Eq,#step3Eq{
-    margin-top: 100px;
+table.inductionTable td{
+    padding-top: 50px;
+    padding-bottom: 50px ;
+    background:bisque;
+    border-bottom: 2px solid pink;
 }
 
 #true{
@@ -197,11 +230,13 @@ border: 5px solid #A27AFE;
             0 0 16px rgba(0,0,0,0.1); 
     padding: 15px;
     background: rgba(255,255,255,0.0);
-    width:65px;
+    width:50px;
+    height:50px;
     
 }
 td{
     width:;
+    
 }
 #Recurrence{
     margin:0 auto;
@@ -254,6 +289,9 @@ img  {
 }
 #recsubmit{
     margin: 0 auto;
+}
+#diffex{
+    padding-left: 25px;
 }
 #username, #password{
 bottom:2;

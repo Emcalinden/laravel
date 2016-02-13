@@ -10,20 +10,14 @@
 <div class = 'container'>
 <section class = 'jumbotron'>
 
-<p class = "title">{!! $title !!}</p>
-{!! Form::open(['route' => 'sessions.store']) !!}
+<p class = "title">Algorithmaths</p>
+<form>
+<input type = "text" id = "usernametxt" class ="form-control span6"/>
+<input type = "text" id = "passwordtxt" class ="form-control span6"/>
+<button id ="loginbutton"></button>
+</form>
 
-<div class="controls">
-{!!Form::text('username','',array('id'=>'usernametxt','class'=>'form-control span6','placeholder' => 'Please Enter your Username')) !!}
-<p class="errors">{{$errors->first('username')}}</p>
-</div>
-<div class="controls">
-{!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}
-<p class="errors">{{$errors->first('password')}}</p>
-</div>
-<p>{!! Form::submit('Login', array('id'=>'loginbutton','class'=>'send-btn')) !!}</p>
-{!! Form::close()!!}
-<a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout</a>
+<a id = "logoutbutton">Logout</a>
 <a id = "registerbutton" href = "#" data-toggle="modal" data-target="#myModalNorm">
     Register
 </a>
@@ -58,28 +52,20 @@
             
             <!-- Modal Body -->
             <div class="modal-body">
-                
-                {!! Form::open(['route' => 'register']) !!}
-<div class = "form-group">
-	<div id ="inputdiv">{!! Form::label('firstname','Firstname: ') !!}{!! Form::text('first_name',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('lastname', 'Lastname: ') !!}{!! Form::text('last_name',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('username','Username: ') !!}{!! Form::text('username',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('password', 'Password: ') !!}{!! Form::text('password',"",['class' => 'form-control']) !!}</div>
 
-</div>
+            <form>
+Firstname: <input type = "text" class ="form-control"/>
+Lastname:<input type = "text" class ="form-control "/>
+Username:<input type = "text" class ="form-control"/>
+Password:<input type = "text" class ="form-control "/>
+
+<button id ="loginbutton"></button>
+</form>
+        
 </div>
             
             <!-- Modal Footer -->
             <div class="modal-footer">
-
-				<div class = "form-group">
-        <td id = "buttons">
-				{!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
-<br />
-			  {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
-        </td>
-{!! Form::close() !!}
-				</div>
 				
             </div>
         </div>
@@ -88,8 +74,8 @@
 <!-- Post Info -->
 <div id = "Home">
 
-<h3>Welcome to Algorithmaths<h3 class = 'AuthUser'>@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h3></h3>
-<p>{!! $text !!}</p>
+<h3>Welcome to Algorithmaths</h3>
+<p>//Welcome text</p>
 </div>
 <div id = "Notation">
 </div>
@@ -101,7 +87,7 @@ will be asked to enter the sequence once you submit.
     <td>
 	<label>U(n) = </label></td>
     <td><input type = "text" id = "firstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
-	<td><label>U(n-1) +</label></td>
+	<td><label>U(n) +</label></td>
 	<td><input type = "text" id = "secondnumber" class ="numberInput"></input></td>
 	<td><label>n +</label></td>
 	<td><input type = "text" id = "thirdnumber" class ="numberInput"></input></td>
@@ -110,41 +96,32 @@ will be asked to enter the sequence once you submit.
     <td><label>U(1) =</label></td>
     <td><input type = "text" id = "initialnumber" class ="numberInput"></input></td> 
 	<td></td>
-	<td id = 'buttons'></td>
+	<td></td>
 	<td></td>
   </tr>
- <tr>
-    <td></td>
-    <td></td> 
-  <td> <button id = "recsubmit">Submit</button></td>
-  <td></td>
-  <td></td>
-  </tr>
+
 </table>
-
-
-
-
-<table class = "recurrenceTable">
-  <tr><td id ='rec1'>Solve the recurrence relation you entered above, up until the 6th term. <br />
-<br /> Enter your answers into the sequence area to the right.</td><td id ='seq'>
-<div class = "result"></div> 
-<button id ='findDiff'>Find Difference</button>
+<div id = "buttonsarea">
+ <button id = "recsubmit">Submit</button>
+ <button id ='findDiff'>Find Difference</button>
+ </div>
+ <div class='row'>
+ <div class = 'col-md-4'></div>
+ <div class ='col-md-4'>
+<div class = "result"></div>
 <div id = "findDifference"></div>
-<div id = "closedFormArea"></div></td>
-<td><div id = 'diffex'>If the first difference is the same, this recurrence relation is linear
-<br /><br />
-If the first difference is not the same, the difference between those values must be found until they are all the same.<br /><br />If a second difference has to be found, the Recurrence relation is Quadratic.</div></td></tr>
+<div id = "closedFormArea"></div>
+</div>
+<div class ='col-md-4'>
 
-
-</table>
-
+</div>
+</div>
 
 </div>
 <div id = "MathInduction">
 
 <table class = "inductionTable">
-  <tr><td id='step1'></td><td id ='step1Eq'></td><td id = 'trueorFalse'></td></tr>
+  <tr><td id='step1'></td><td id ='step1Eq'></td><td></td></tr>
   <tr><td id ='step2'></td><td id ='step2Eq'></td><td></td></tr>
   <tr><td id ='step3'></td><td id ='step3Eq'></td><td></td></tr>
 </table>
