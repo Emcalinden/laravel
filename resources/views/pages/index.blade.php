@@ -31,7 +31,7 @@
 <section class = 'nav'>
 <ul class="nav nav-tabs" id="myTab">
 			  <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
-			  <li><a data-target="#notation" data-toggle="tab">Notation</a></li>
+			  <li><a data-target="#notation" data-toggle="tab">Examples</a></li>
 			  <li><a data-target="#recurrence" data-toggle="tab">Recurrence relation</a></li>
 			  <li><a href="#induction" data-target="#mathinduction" data-toggle="tab" name ="induction">Mathematical Induction</a></li>
 			  <li><a data-target="#test" data-toggle="tab" name = "test">Test Yourself</a></li>
@@ -64,7 +64,7 @@
 	<div id ="inputdiv">{!! Form::label('firstname','Firstname: ') !!}{!! Form::text('first_name',"",['class' => 'form-control']) !!}</div>
 	<div id ="inputdiv">{!! Form::label('lastname', 'Lastname: ') !!}{!! Form::text('last_name',"",['class' => 'form-control']) !!}</div>
 	<div id ="inputdiv">{!! Form::label('username','Username: ') !!}{!! Form::text('username',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('password', 'Password: ') !!}{!! Form::text('password',"",['class' => 'form-control']) !!}</div>
+	<div id ="inputdiv">{!! Form::label('password', 'Password: ') !!}{!! Form::password('password',"",['class' => 'form-control']) !!}</div>
 
 </div>
 </div>
@@ -91,11 +91,146 @@
 <h3>Welcome to Algorithmaths<h3 class = 'AuthUser'>@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h3></h3>
 <p>{!! $text !!}</p>
 </div>
-<div id = "Notation">
+<div id = "Examples">
+<section class = 'nav'>
+<ul class="nav nav-tabs tabs2" id="myTab">
+        <li class="active"><a data-target="#linex" data-toggle="tab">Linear Example</a></li>
+        <li><a data-target="#quadex" data-toggle="tab">Quadratic Example</a></li>
+        <li><a data-target="#toh" data-toggle="tab">Towers of Hanoi</a></li>
+</ul>
+</section>
+<div id ='fullLinear'>
+<section class = 'nav'>
+<ul class="nav nav-tabs tabs3" id="myTab">
+        <li class="active"><a data-target="#tohrec" data-toggle="tab">Linear recurrence relation</a></li>
+        <li><a data-target="#tohmi" data-toggle="tab">Linear Proof By Mathematical Induction</a></li>
+</ul>
+</section>
+<div id = 'linearfull'>
+
+<div id = 'linrec'>
+<p>Un = (n-1) +3, U(1)=1.</p> <p>U(2) = 4</p><p> U(3) =7</p><p>U(4) = 10</p>
+<p>The difference between all the terms in the sequence is 3.
+</p>
+</div>
+<div id ='linmi'></div>
+ </div>
+ </div>
+<div id = 'quadfull'>
+<section class = 'nav'>
+<ul class="nav nav-tabs tabs3" id="myTab">
+        <li class="active"><a data-target="#tohrec" data-toggle="tab">Quadratic recurrence relation</a></li>
+        <li><a data-target="#tohmi" data-toggle="tab">Quadratic Proof By Mathematical Induction</a></li>
+</ul>
+</section>
+<div id = 'quadrec'>
+quad rec
+</div>
+<div id ='quadmi'>quad mi</div>
+  </div>
+<div id = 'tohfull'>
+<section class = 'nav'>
+<ul class="nav nav-tabs tabs3" id="myTab">
+        <li class="active"><a data-target="#tohrec" data-toggle="tab">Towers of Hanoi Recurrence relation</a></li>
+        <li><a data-target="#tohmi" data-toggle="tab">Towers of Hanoi Mathematical Induction</a></li>
+</ul>
+</section>
+<div id = 'tohrecurrence'>
+<h1 class = 'towersTitle'>Towers of Hanoi</h1>
+<p>How many moves will it take to transfer n disks from the left post to the right post?</p>
+<p>Let's look for a pattern in the number of steps it takes to move just one, two, or three disks. We'll number the disks starting with disk 1 on the bottom.</p>
+<p>Click the links below to see how many moves it takes for 1, 2 or 3 disks. </p>
+<a id ='seeonemove' class = 'disks'>1 Disk </a><a id ='seetwomove'class = 'disks'>2 Disks </a><a id ='seethreemove'class = 'disks'>3 Disks </a>
+<div class="row">
+<div id = 'move1'>
+<div class ='col-md-5'>
+<p class = 'moves'>1 disk: 1 move</p>
+
+<p>Move 1: move disk 1 to post C</p>
+</div>
+<div id ='recImage' class = 'col-md-4'>
+</div>
+</div>
+</div>
+<div class="row">
+<div id = 'move2'>
+<div class ='col-md-5'>
+<p class = 'moves'>2 disks: 3 moves</p>
+<p>Move 1: move disk 2 to post B </p>
+<p>Move 2: move disk 1 to post C </p>
+<p>Move 3: move disk 2 to post C</p>
+</div>
+<div id ='recImage2'class = 'col-md-4'>
+</div>
+</div>
+</div>
+<div class="row">
+<div id = 'move3'>
+<div class ='col-md-5'>
+<p class ='moves'>3 disks: 7 moves</p>
+<p>Move 1: move disk 3 to post C </p>
+<p>Move 2: move disk 2 to post B </p>
+<p>Move 3: move disk 3 to post B </p>
+<p>Move 4: move disk 1 to post C </p>
+<p>Move 5: move disk 3 to post A </p>
+<p>Move 6: move disk 2 to post C </p>
+<p>Move 7: move disk 3 to post C</p>
+</div>
+<div id ='recImage3' class = 'col-md-5'>
+
+</div>
+</div>
+</div>
+<p>Can you work through the moves for transferring 4 disks? It should take you 15 moves. How about 5 disks? 6 disks? Do you see a pattern?</p>
+<br/>
+<p> Lets refer to the number of disks as 'n'.</p>
+<p> Lets refer to the amount of moves needed to complete the sequence as 'M'.</p>
+<br />
+<p> When n = 1 we know it takes 1 move, but how can we show this as a Recurrence Relation?</p>
+<p> We write a recurrence (let's call it M(n)) for the number of moves it takes for an n-disk tower.</p>
+<p> So....<p class ='important'> M(1) = 1</p></p>
+<p> From the pattern we can see that <p class ='important'>M(n) = 2(n-1)+1</p>for example <p class ='important'>M(2) = 2(1)+1 = 3</p> <p>and</p><p class ='important'> M(3) = 2(3)+1 = 7.</p></p>
+<p> The n- 1 in the equation above refers to the answer from the previous term in the sequence</p>
+<br />
+<p>Just refer to the images above to see that it works.</p>
+<br />
+<p> How many moves will it take to move 100 disks?</p>
+<p> We dont want to work all of this out, so we need to find a solution that can find all numbers </p>
+</div>
+<div id = 'tohInduction'>
+<table id ='pattern'>
+<tr><td><p>Number of Disks  </td><td>  Number of Moves</p></td></tr>
+<tr><td><p> 1  </td> <td> 1 </p></td></tr>
+<tr><td><p> 2   </td> <td> 3 </p></td></tr>
+<tr><td><p> 3   </td> <td>  7 </p></td></tr>
+<tr><td> <p> 4  </td> <td>  15</p> </td></tr>
+<tr><td> <p> 5   </td> <td> 31</p> </td></tr>
+</table>
+   <p> Powers of two help reveal the pattern:</p>
+<p>Number of Disks (n)     Number of Moves</p>
+<p>        1                 2^1 - 1 = 2 - 1 = 1 </p>
+<p>        2                 2^2 - 1 = 4 - 1 = 3 </p>
+<p>        3                 2^3 - 1 = 8 - 1 = 7 </p>
+<p>        4                 2^4 - 1 = 16 - 1 = 15</p> 
+<p>        5                 2^5 - 1 = 32 - 1 = 31</p>
+<p>So the formula for finding the number of steps it takes to transfer n disks from post A to post B is:<p class ='important'> 2^n - 1</p></p>
+
+<p>Proof by MI</p>
+<p>Base Case:</p>
+<p>n1=2^1−1=1</p>
+<p>Assume true for n=k </p>
+<p>Sk=2^k−1</p>
+<p>Let's check if n=k+1</p>
+<p>Sk+1 = 2Sk+1=</p><p>2(2^k−1)+1=</p><p>2^(k+1)−1</p>
+
+</div>
+
+</div>
 </div>
 <div id = "Recurrence">
 Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
 will be asked to enter the sequence once you submit. 
+
 <table id ='recTable'>
   <tr>
     <td>
@@ -122,21 +257,18 @@ will be asked to enter the sequence once you submit.
   </tr>
 </table>
 
-
-
+<table id = 'hortable'>
+<tr id = 'vertseq'>
+</tr>
+</table>
+</td>
 
 <table class = "recurrenceTable">
-  <tr><td id ='rec1'>Solve the recurrence relation you entered above, up until the 6th term. <br />
-<br /> Enter your answers into the sequence area to the right.</td><td id ='seq'>
-<div class = "result"></div> 
-<button id ='findDiff'>Find Difference</button>
-<div id = "findDifference"></div>
-<div id = "closedFormArea"></div></td>
-<td><div id = 'diffex'>If the first difference is the same, this recurrence relation is linear
-<br /><br />
-If the first difference is not the same, the difference between those values must be found until they are all the same.<br /><br />If a second difference has to be found, the Recurrence relation is Quadratic.</div></td></tr>
-
-
+<tr><td></td><td>
+<button id ='findDiff'>Find Difference</button></td><td></td>
+</tr>
+<tr><td></td><td><div id = "closedFormArea"></div></td><td></td></tr>
+<tr><td></td><td><div id = 'proofbutton'><button id = 'proof'>Proof by Mathematical Induction</button></div></td><td></td></tr>
 </table>
 
 
@@ -152,17 +284,31 @@ If the first difference is not the same, the difference between those values mus
 </div>
 <div id = "Test">
 
-<div id = "testHeader">Test yourself</div>
+<div id = "testHeader"></div>
+<div id ='testarea'>
+<h1 class = 'quiztitle'>Test Yourself!! </h1>
 
-<button id = "start">Start the test</button>
-<div id ="questions">Test has started
+
+
+@foreach ($questions as $question)
+<h2>{{$question -> question}}</h2>
+@foreach ($answers as $answer)
+<p><input type="radio" name="answer" value=$answer>{{$answer -> answer}}</p>
+@endforeach
+@endforeach
+</div>
+  <td> </td>
+
+ 
+<!--button id = "start">Start the test</button-->
+<!--div id ="questions">Test has started
 
 <div class="col-offset-6 centered">
 
 
 </div>
 
-</div>
+</div-->
 
 </div>
 <div id = "Review">

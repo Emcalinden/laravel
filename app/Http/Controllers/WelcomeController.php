@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 use View;
 use Algorithmaths\User;
+use Algorithmaths\Question;
+use Algorithmaths\Answer;
 use Illuminate\Support\Facades\Input;
 use Hash;
 
@@ -21,12 +23,21 @@ class WelcomeController extends Controller
    public function index()
     { 
         $title = 'Algorithmaths';
+        $questions = Question::all();
+        $question_id = Question::find('question_id');
+        //$post = Post::whereUrl($url)->first();
+
+        //$answers = $questions->answer;
+
+         //$answers = Answer::where('question_id')->get();
+        $answers = Answer::find(1)->where('question_id', 1)->get(); 
+
 		$text = 'This site aims to guide you in learning recurrence relations
 		and proof by mathematical induction. You can learn the recurrence relations 
 		and proof by mathematical induction as a non-registered user although
 		if you decide to register you can test yourself on the subject from a beginner
 		level right up to a more difficult level. ';
-        return View::make('pages.index',compact('title', 'text'));
+        return View::make('pages.index',compact('title', 'text','questions','answers'));
     }
 
     public function create()
@@ -71,17 +82,6 @@ class WelcomeController extends Controller
             return Redirect::to('index');
         }
 
-
-
-
-
-
-
-
-
-
-
-
         $input = Request::all();
 		$user = new User;
 		$user -> first_name = $input['first_name'];
@@ -91,9 +91,6 @@ class WelcomeController extends Controller
 		$user -> save();
 		return redirect('index');
     }
-	
-	
-	
 	
 
     /**

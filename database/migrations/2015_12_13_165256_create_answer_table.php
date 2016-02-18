@@ -14,10 +14,17 @@ class CreateAnswerTable extends Migration
     {
      Schema::create('answer', function($table) {
 	 $table -> increments('answer_id');
-	 $table->string('answer');
+	 $table-> string('answer');
+     $table -> integer('question_id')->length(10)->unsigned();
+     $table -> boolean('correct_answer');
      $table->timestamps();
 	});
+    Schema::table('answer', function($table) {
+     $table->foreign('question_id')->references('question_id')->on('question')->onDelete('cascade');
+    });
+
     }
+    
 
     /**
      * Reverse the migrations.

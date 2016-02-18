@@ -1,10 +1,10 @@
 $(document).ready(function(){
  //hiding all the divs apart from home as it needs to be displayed on initial viewing
-$("#Notation, #Recurrence,#MathInduction, #Test, #Review,#quadratic").hide();
+$("#Examples, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#tohInduction,#tohclosed,#quadfull,#linmi,#quadmi").hide();
 //on the click of a tab
 $(".nav li a").click(function(evt){
 //hiding all the divs including home once this button is clicked as a new one will appear when another tab is clicked.
-$("#Home, #Notation, #Recurrence,#MathInduction, #Test, #Review,#quadratic").hide();
+$("#Home, #Examples, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#quadrec,#tohrecurrence,#tohInduction,#fullLinear,#tohclosed,#tohfull,#linearfull,#quadfull,#linrec,#linmi,#quadmi").hide();
 //link clicked becomes the text of the tab
 linkclicked = $(this).text();
 		  //Switch on the text value passed in, which will determin its outcome using a case
@@ -13,8 +13,12 @@ linkclicked = $(this).text();
             case "Home":
 			$("#Home").show();
 			break;
-			case "Notation":
-			$("#Notation").show();
+			case "Examples":
+			$("#Examples").show();
+			$("#linearfull").show();
+			$("#tohrecurrence").show();
+			$("#linrec").show();
+            $("#fullLinear").show();
 			break;
 			case "Recurrence relation":
 			$("#Recurrence").show();
@@ -29,12 +33,97 @@ linkclicked = $(this).text();
             case "Review ":
             $("#Review").show();
             break;
+            case "Towers of Hanoi Recurrence relation":
+            $("#Examples").show();
+            $("#tohfull").show();
+            $("#tohrecurrence").show();
+            move(".towersTitle");
+            break;
+             case "Towers of Hanoi Mathematical Induction":
+            $("#Examples").show();
+            $("#tohfull").show();
+            $("#tohInduction").show();
+            break;
+            case "Towers of Hanoi Closed-form Expression":
+            $("#Examples").show();
+            $("#tohfull").show();
+            $("#tohclosed").show();
+            break;
+            case "Linear recurrence relation":
+            $("#linearfull").show();
+            $("#Examples").show();
+            $("#linrec").show();
+            $("#fullLinear").show();
+
+            break;
+            case "Quadratic recurrence relation":
+            $("#quadfull").show();
+            $("#Examples").show();
+            $("#quadrec").show();
+
+            break;
+            case "Linear Proof By Mathematical Induction":
+            $("#linearfull").show();
+            $("#Examples").show();
+            $("#linmi").show();
+            $("#fullLinear").show();
+            break;
+             case "Quadratic Proof By Mathematical Induction":
+            $("#quadfull").show();
+            $("#Examples").show();
+            $("#quadmi").show();
+    
+            break;
+            case "Towers of Hanoi":
+             $("#Examples").show();
+             $("#tohrecurrence").show();
+            $("#tohfull").show();
+            break;
+            case "Linear Example":
+            $("#Examples").show();
+            $("#fullLinear").show();
+            $("#linearfull").show();
+            $("#linrec").show();
+
+            break;
+            case "Quadratic Example":
+            $("#Examples").show();
+            $("#quadfull").show();
+            $("#quadrec").show();
+            break;
 			default:
 			$("#Home" ).show();	
 			break;
 
           }
 		  });
+
+
+
+$("#move2, #move3").hide();
+
+$(".disks").click(function(e){
+$("#move1, #move2, #move3").hide();
+var link = $(this).attr("id");
+
+switch(link){
+
+case "seeonemove":
+$("#move1").show();
+$("#move2, #move3").hide();
+break;
+case "seetwomove":
+$("#move2").show();
+$("#move1, #move3").hide();
+break;
+case "seethreemove":
+$("#move3").show();
+$("#move2, #move1").hide();
+break;
+
+}
+});
+
 
 $answers = [];
 $numbers = [];
@@ -55,7 +144,7 @@ $thirdnumber = null;
 $initialnumber = null;
 $answers.length = 0;
 
-$( '.result' ).on( 'keyup', '.sequenceval', function () { 
+$( '#vertseq' ).on( 'keyup', '.sequenceval', function () { 
 
 var index = $( ".sequenceval" ).index( this );
 var useranswer = $(this).val();
@@ -89,29 +178,28 @@ $secondnumber = parseInt($('#secondnumber').val(), 10);
 $thirdnumber = parseInt($('#thirdnumber').val(), 10);
 if($("#initialnumber").val().length == 0 || $("#firstnumber").val().length == 0 ||$("#secondnumber").val().length == 0 ||$("#thirdnumber").val().length == 0 ){
 	alert("oops");
-	$(".result").empty();
+	$("#vertseq").empty();
 }else{
 	$answers.length = 0;
 	$("#findDifference").empty();
-$(".result").empty();
+$("#vertseq").empty();
 	$("#findDiff").hide();
-
-
 	//$i = 1;
 	//$(".result").append("<p>Work out the values for the recurrence relation above and enter the answers below</p>");
 	//$(".result").append(("<br /><div id = 'firstdifftext'>First Difference</div><div id ='seconddifftext'>Second Difference</div>"));
 	$("#buttons").append("<button id = 'clear'>Clear</button><br /><br />");
-	$(".result").append(("U(1) = "+$n +"<br /><div id = 'test1'></div><div id ='second1'></div>"));
+	$("#vertseq").append(("<td>U(1) = <br /><input type = 'text' class = 'sequenceval' readonly = 'true' value ='"+$n +"'/><br /><div id = 'test1'></div><div id ='second1'></div></td>"));
 	for (var i = 2; i<=6; i++){
+		var j = i-1;
 		$answer = $firstnumber*$n+($secondnumber*i)+$thirdnumber;
 	$n = $answer;
-	$answers.push("<tr><td>U("+i+") = <input type = 'text' class ='sequenceval' id='"+$answer+"'/><span class='glyphicon glyphicon-question-sign'data-toggle='tooltip' title ='Un ="+ $firstnumber+"*"+$answer+"+"+$secondnumber+"n +"+$thirdnumber+"' aria-hidden='true'></span>"+$answer+"<div id = 'test"+i+"'></div><div id ='second"+i+"'></div>"+"</td></tr>");
+	$answers.push("<td>U("+i+") = <br/><input type = 'text' class ='sequenceval' id='"+$answer+"'/><span class='glyphicon glyphicon-question-sign'data-toggle='tooltip' title ='Un ="+ $firstnumber+"*"+'U('+j+')'+"+"+$secondnumber+"n +"+$thirdnumber+"' aria-hidden='true'></span>"+$answer+"<div id = 'test"+i+"'></div><div id ='second"+i+"'></div>"+"</td>");
 }
 $('[data-toggle="tooltip"]').tooltip(); 
 if($answers.length == 5){
 	$("#diffex").append("");
 
-$(".result").append($answers);
+$("#vertseq").append($answers);
 $(".result").append("");
 $(".recurrenceTable").show();
  move(".sequenceval");
@@ -138,15 +226,17 @@ $("#findDiff").click(function(){
 //$("#clear").remove();
 $("#findDifference").empty();
 $("#test1,#test2,#test3,#test4,#test5").empty();
+$("#second1,#second2,#second3,#second4,#second5").empty();
+$("#closedFormArea").empty();
 var values = jQuery.unique( $numbers );
 $("#findDifference").show();
 
 $n =  parseInt($('#initialnumber').val(), 10);
-var first = $(".sequenceval").eq(0).attr("id");
-var second = $(".sequenceval").eq(1).attr("id");
-var third = $(".sequenceval").eq(2).attr("id");
-var fourth = $(".sequenceval").eq(3).attr("id");
-var fifth = $(".sequenceval").eq(4).attr("id");
+var first = $(".sequenceval").eq(1).attr("id");
+var second = $(".sequenceval").eq(2).attr("id");
+var third = $(".sequenceval").eq(3).attr("id");
+var fourth = $(".sequenceval").eq(4).attr("id");
+var fifth = $(".sequenceval").eq(5).attr("id");
 
 var initialDifference  = first -$n;
 var firstDifference = second - first;
@@ -159,7 +249,6 @@ $("#test2").append("1st <p><span class='glyphicon glyphicon-arrow-right' aria-hi
 $("#test3").append("1st <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+secondDifference+"</p>");
 $("#test4").append("1st <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+thirdDifference+"</p>");
 $("#test5").append("1st <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+fourthDifference+"</p>");
-
 
 if ((firstDifference == secondDifference) && (secondDifference==thirdDifference) &&(thirdDifference ==fourthDifference)){
 
@@ -191,30 +280,29 @@ $("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='te
 });
 $closedformAnswers = [];
 var reccount=0;
-
+$("#proofbutton").hide();
 $( '#closedFormArea' ).on( 'keyup', '.guess', function () {  
 	$("#checkAny").empty();
-	$("#proofbutton").empty();
 var value = $(this).val();
 var aID = $(this).attr("id");
 if (value == aID){
 $(this).css('border', '3px solid green'); 
+$(this).prop("readonly", true);
 $closedformAnswers.push(aID);
 reccount++;
-$(this).prop("readonly", true);
 }else{
-	
 	$(this).css('border', '3px solid red'); 
 }   
 if($closedformAnswers.length ==3){
-$( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a term to see if it is true far:U(<input type ='text' id ='term'/>)<br />= <div id ='termAns'></div></div>");
+	$('#checkAny').empty();
+$( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
 move("#checkAny");
 }
 });
+
 $("#closedFormArea").on("keyup", "#term", function(){
 	$("#termAns").empty();
-	$("#proof").empty();
-	$("#closedFormArea #proofbutton").empty();
+
 var userinput = $(this).val();
 var firstterm = (userinput *userinput)*a;
 var secondterm = b * userinput;
@@ -225,13 +313,12 @@ answer = (firstterm + secondterm) + thirdterm;
 if(userinput == ""){
 	$("#termAns").empty();
 }else{
-$("#proofbutton").empty();
-$("#proof").empty();
-$("#termAns").append(answer);
+$("#termAns").append("<p>U("+userinput+") = "+answer +"<br/></p>");
+$("#termAns").append("<p>T("+userinput+") = "+answer+"</p.");
 move("#termAns");
+	$("#proofbutton").show();
 }
-$("#closedFormArea").append("<div id = 'proofbutton'><button id = 'proof'>Proof by Mathematical Induction</div></div>");
-var closedFormEq = "U(n) = " +a +"n&#178; + " +b+ "(n) +"+ c;
+var closedFormEq = "T(n) = " +a +"n&#178; + " +b+ "(n) +"+ c;
 $("#proof").one('click', function(e){
 e.preventDefault();
 $("#closedFormArea").append("<div id ='proofMessage'>Go to the Mathematical Induction tab<br /><a href = '#' id = 'backtotop'>Back to top</a></div>");
@@ -242,31 +329,29 @@ move(".jumbotron");
 $("#step1").append("Step 1");
 //$("#step1Eq").append("U(n+1) ="+$firstnumber+"U(n) +"+$secondnumber+"n +"+$thirdnumber);
 //$("#step1Eq").append("U(n+1) ="+$firstnumber+ "0 + " + $secondnumber+"(1) +"+$thirdnumber);
-$("#step1Eq").append("Initially we need to recheck what n(1) is in our recurrence relation:<br /><br />");
+$("#step1Eq").append("Initially we need to recheck what U(1) is in our recurrence relation:<br /><br />");
 var recurrenceans = "U(1) = "+ $n +"<br /><br />";
 $("#step1Eq").append(recurrenceans);
-$("#step1Eq").append("For step 1 to be true, when we enter 1 into our Closed-form expression we should get the same answer: <br /><br />");
+$("#step1Eq").append("For step 1 to be true, when we enter 1 into our Closed-form expression we should get the same answer as the U(1) in our Recurrence Relation: <br /><br />");
 $("#step1Eq").append(closedFormEq +"<br />");
-$("#step1Eq").append("U(1) = "+a+"(1&#178;) + "+b+"(1) +"+c +"<br /><br />");
+$("#step1Eq").append("T(1) = "+a+"(1&#178;) + "+b+"(1) +"+c +"<br /><br />");
 var closedn1 = (a*(1*1)+(b*1)+c);
-$("#step1Eq").append("U(1) = "+closedn1);
+$("#step1Eq").append("T(1) = "+closedn1);
 if (closedn1 == $n)
 {
 $("#trueorFalse").append("<div id = 'true'>TRUE!</div>");
-
 $("#step2").append("Step 2");
-$("#step2Eq").append("Let's assume that n = k <br /><br />");
-$("#step2Eq").append("U(k) = " +a +"k&#178; + " +b+ "(k) +"+ c+" <br /><br />");
-$("#step2Eq").append("U(k+1) ="+$firstnumber+"U(k) +"+$secondnumber+"k +"+$thirdnumber+" <br /><br />");
+$("#step2Eq").append("Let's assume the recurrence relation is equal to the closed-form expression for arbitrary integer k. <br /><br />");
+$("#step2Eq").append("T(k) = " +a +"k&#178; + " +b+ "(k) +"+ c+" <br /><br />");
+$("#step2Eq").append("U(k) ="+$firstnumber+"U(k-1) +"+$secondnumber+"k +"+$thirdnumber+" <br /><br />");
 $("#step3").append("Step 3");
-$("#step3Eq").append("Let's assume that n = k + 1 <br /><br />");
-//$("#step3Eq").append("U(k +1) = " +a +"(k+1)&#178; + " +b+ "(k+1) +"+ c+" <br /><br />");
-$("#step3Eq").append("We can now begin the Induction: <br/> <br />");
+$("#step3Eq").append("We want to show that U(k + 1) = T(k + 1). <br /><br />");
 $("#step3Eq").append("U(k+1) ="+$firstnumber+"U(k) +"+$secondnumber+"k +"+$thirdnumber+" <br /><br />");
-$("#step3Eq").append("We know that U(k) in the equation above is equal to" +a +"k&#178; + " +b+ "(k) +"+ c+" so we can integrate that into our recurrence relation. <br /><br />");
+$("#step3Eq").append("We know that U(k) in the equation above is equal to" +a +"k&#178; + " +b+ "(k) +"+ c+" so we can replace the U(k) our recurrence relation. <br /><br />");
 $("#step3Eq").append("U(k+1) ="+$firstnumber+"("+a +"k&#178; + " +b+ "(k) +"+ c+")" +$secondnumber+"k +"+$thirdnumber+" <br /><br />");
 
-
+}else{
+	$("#step2Eq").append("They are not equal<br /><br />");
 
 }
 });

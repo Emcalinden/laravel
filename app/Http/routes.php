@@ -17,13 +17,16 @@ Route::post('register', [ 'as' => 'register', 'uses' => 'WelcomeController@store
 //Route::post('recurrence', ['as' => 'recurrence', 'uses' => 'RecurrenceController@recurrence']);
 Route::get('index', 'WelcomeController@index');
 
+//Route::get('questions',['as'=>'questions', 'uses' => 'QuestionsController@index']);
+//Route::get('question', [ 'as' => 'pages.index', 'uses' => 'QuestionsController@index']);
+//Route::get('', function() {
 
+//$questions = \Algorithmaths\Question::find(1);
+//return View::make('pages.index', compact('questions'));
+//});
+//Route::resource('question', 'QuestionsController');
+//Route::resource('question','QuestionController');
 Route::resource('sessions', 'SessionsController');
-  Route::get('/',array('as'=>'quiz','uses'=>'QuestionControllers@index'));
-  Route::resource('question','QuestionController');
-
-//Route::get('login', 'LoginController@login');
-//Route::post('register', 'WelcomeController@store');
 
 
 

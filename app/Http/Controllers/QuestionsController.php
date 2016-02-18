@@ -3,28 +3,36 @@
 namespace Algorithmaths\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Algorithmaths\Question;
 use Algorithmaths\Http\Requests;
 use Algorithmaths\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use View;
 
 class QuestionsController extends Controller
 {
-       public function __construct(){
-        $this->middleware('auth',['only'=>'create']);
-    }
+      
+    
  public function index () {
-     $question = Question::latest()->get();
-     return view('index',compact('question'));
- }
+  
+     //$questions = Question::all();
+
+    // return $questions;
+//return view::make('pages.index',compact('questions'));
+    //return Redirect::to('index', compact('questions'));
+           //return Redirect::to('/')->with('questions',$questions);
+   // return View::make('pages.index',compact('questions'));
+      //return View::make('pages.index',compact('questions'));
+//return 'get stuff';
+
+    }
     
 
   public function store (StoreQuestionRequest $request) {
-      $question = new Question($request->all());
-      Auth::user()->questions()->save($question);
-      return redirect('/');
+     
   }
   public function show ($id) {
-      $question = Question::where('id','=',$id)->first();
-      return view('index',compact('question'));
+
   }  
 }

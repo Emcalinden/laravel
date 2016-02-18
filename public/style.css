@@ -18,7 +18,34 @@ text-align:center;
 p.title{
 font-size:500%;
 }
-#Home,#Notation,#Recurrence,#MathInduction,#Test,#Review
+.quiztitle,.towersTitle{
+    color:purple;
+}
+.row{
+
+}
+.col-md-5 p{
+    color:#790765;
+}
+#move1,#move2,#move3{
+    height:auto;
+    margin-top:20px;
+}
+.disks{
+    margin-left:10px;
+    margin-top: 20px;
+    margin-bottom:20px;
+    color:white;
+    height:40px;
+    width:50px;
+    padding: 14px 25px;
+    background-color:#A27AFE;
+}
+.important{
+    color:red;
+    text-decoration: bold;
+}
+#Home,#Examples,#Recurrence,#MathInduction,#Test,#Review
 {
  margin: 0 auto;
 height:auto;
@@ -33,10 +60,52 @@ width:;
 margin-top:10px;
 margin: 0 auto;
 }
+#testarea,#tohrecurrence,#tohclosed,#tohInduction,#linearfull,#Home,#Recurrence,#MathInduction{
+    margin:0 auto;
+    height:auto;
+    width:80%;
+    margin-top:20px;
+    background-color:rgba(156, 152, 193, 0.36);
+    text-align:center;
+    color:blue;
+}
 
-#test1,#test2,#test3,#test4,#test5{
+.tabs2{
+margin-left:;
 
-    width:200px;
+
+}
+.tabs3{
+margin-left: ;
+
+}
+#Examples .tabs2 li a { border-color: #75ECFD;background-color:grey;  }
+#Examples .tabs3 li a { border-color: #75ECFD;background-color:white; }
+#pattern{
+margin:0 auto;
+}
+#recImage,#recImage2,#recImage3{
+    width:50%;
+    height:200px;
+    background-size: 100% 100%;
+    background-color: #D698FE;
+    margin:0 auto;
+}
+.moves{
+     text-decoration: underline;
+}
+#recImage{
+    background-image:url(disk1.jpg);
+}
+#recImage2{
+    background-image:url(disk2.jpg);
+}
+#recImage3{
+    background-image:url(disk3.jpg);
+}
+#test1,#test2,#test3,#test4,#test5,#test6{
+
+    width:80%;
     height: 20px;
     text-align: right;
     color:green;
@@ -51,13 +120,21 @@ margin: 0 auto;
     width:70px;
     text-align: right
 }
-#second1,#second2,#second3,#second4,#second5{
-    width:250px;
+#second1,#second2,#second3,#second4,#second5,#second6{
+    width:100%;
     padding-top: 20px;
     height:25px;
      font-size: 1em;
     text-align: right;
     color:red;
+}
+#hortable{
+padding-top: 50px;
+    width:80%;
+    margin:0 auto;
+}
+#hortable td{
+    width:auto;
 }
 #closedForm{
 }
@@ -81,6 +158,8 @@ font-size: 1.5em;
 }
 #myTab{
 font-size: 1em;
+padding-top:0px;
+margin-top: 0px;
 }
 #myTab li a { border-color: #75ECFD;background-color:#D698FE; }
 #myTab li.active a {border-bottom-color: transparent;background-color:#A095EE; }
@@ -93,10 +172,11 @@ background-color:#D0BCFE;
 display:inline-block;
 width: 100px;
 }
-#logInForm #inputdiv{
+#logInForm #inputdiv,#inputdiv #password{
 display:inline-block;
 
 }
+
 input{
 border: 5px solid #A27AFE; 
     -webkit-box-shadow: 
@@ -160,6 +240,7 @@ margin-bottom:50px;
 }
 #recTable{
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 #rec1,#rec2,#rec3{
     width:33%;
@@ -171,6 +252,7 @@ table.inductionTable{
 }
 table.recurrenceTable{
     width:100%;
+    text-align: center;
     margin: 0 auto;
 }
 table.recurrenceTable td{
@@ -206,7 +288,6 @@ color:red;
 table.inductionTable td{
     padding-top: 50px;
     padding-bottom: 50px ;
-    background:bisque;
     border-bottom: 2px solid pink;
 }
 
@@ -232,6 +313,7 @@ border: 5px solid #A27AFE;
     background: rgba(255,255,255,0.0);
     width:50px;
     height:50px;
+    background-color: white;
     
 }
 td{
@@ -257,7 +339,11 @@ font-size: 150%;
     color:blue;
     background-size: cover;
 }
-
+#inputdiv #password{
+    width:100%;
+    background-color:white;
+    height: 34px
+}
 .modal-body .form-horizontal .col-sm-2,
 .modal-body .form-horizontal .col-sm-10 {
     width: 100%;
@@ -275,7 +361,6 @@ margin: 0 auto;
 .form-group{
     width:50%;
     margin: 0 auto;
-
 }
 img  {
  
@@ -298,7 +383,6 @@ bottom:2;
 color:black;
 }
 .nav-tabs{
-margin-top:50px;
 
 
 }

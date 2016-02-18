@@ -13,8 +13,8 @@ class CreateUserResults extends Migration
     public function up()
     {
          Schema::create('user_result', function($table) {
-     $table->integer('id')->length(10)->unsigned();
-	 $table->integer('result_id')->length(10)->unsigned();
+     $table-> integer('id')->length(10)->unsigned();
+	 $table-> integer('result_id')->length(10)->unsigned();
 		});
 
      Schema::table('user_result', function($table) {

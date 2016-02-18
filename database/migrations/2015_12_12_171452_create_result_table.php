@@ -15,7 +15,6 @@ class CreateResultTable extends Migration
      Schema::create('result', function($table) {
 	 $table -> increments('result_id');
      $table->integer('id')->length(10)->unsigned();
-	 $table->string('question_id');
      $table->timestamps();
 		});
 	 Schema::table('result', function($table) {

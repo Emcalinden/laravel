@@ -12,17 +12,13 @@ class CreateQuestionTable extends Migration
      */
     public function up()
     {
-     Schema::create('question', function($table) {
+     Schema::create('question', function($table) {  
 	 $table -> increments('question_id');
-	 $table->integer('answer_id')->length(10)->unsigned();
-	 $table->string('question');
-	 $table->string('correct_answer');
-	 $table->string('difficulty');
+     $table -> string('question');
+	 $table-> string('difficulty');
      $table->timestamps();
 	});
-	 Schema::table('question', function($table) {
-     $table->foreign('answer_id')->references('answer_id')->on('answer')->onDelete('cascade');
-    });
+
     }
 
     /**
