@@ -1,347 +1,372 @@
-
-body{
-background-color:#A27AFE;
-font-family: 'Alegreya', serif;
-cursor: pointer;
-font-size: 160%;
-
+body {
+    background-color: #A27AFE;
+    font-family: 'Alegreya', serif;
+    cursor: pointer;
+    font-size: 160%;
 }
-.jumbotron{
-font-family: 'eraser', sans-serif;
-background-image:url(toh.jpg);
-background-size: 100% 100%;
-height:auto;
-color:purple;
-text-align:center;
+.jumbotron {
+    font-family: 'eraser', sans-serif;
+    background-image: url(toh.jpg);
+    background-size: 100% 100%;
+    height: auto;
+    color: purple;
+    text-align: center;
 }
-
-p.title{
-font-size:500%;
+p.title {
+    font-size: 500%;
 }
-.quiztitle,.towersTitle{
-    color:purple;
+.quiztitle,
+.towersTitle {
+    color: purple;
 }
-.row{
-
+.row {} .col-md-5 p {
+    color: #790765;
 }
-.col-md-5 p{
-    color:#790765;
-}
-#move1,#move2,#move3{
-    height:auto;
-    margin-top:20px;
-}
-.disks{
-    margin-left:10px;
+#move1,
+#move2,
+#move3 {
+    height: auto;
     margin-top: 20px;
-    margin-bottom:20px;
-    color:white;
-    height:40px;
-    width:50px;
-    padding: 14px 25px;
-    background-color:#A27AFE;
 }
-.important{
-    color:red;
+.disks {
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    height: 40px;
+    width: 50px;
+    padding: 14px 25px;
+    background-color: #A27AFE;
+}
+.important {
+    color: red;
     text-decoration: bold;
 }
-#Home,#Examples,#Recurrence,#MathInduction,#Test,#Review
-{
- margin: 0 auto;
-height:auto;
+#Home,
+#Examples,
+#Recurrence,
+#MathInduction,
+#Test,
+#Review {
+    margin: 0 auto;
+    height: auto;
 }
-#centerCol{
-
-width:;
+#centerCol {
+    width: ;
 }
-
-.result{
-width:;
-margin-top:10px;
-margin: 0 auto;
+.result {
+    width: ;
+    margin-top: 10px;
+    margin: 0 auto;
 }
-#testarea,#tohrecurrence,#tohclosed,#tohInduction,#linearfull,#Home,#Recurrence,#MathInduction{
-    margin:0 auto;
-    height:auto;
-    width:80%;
-    margin-top:20px;
-    background-color:rgba(156, 152, 193, 0.36);
-    text-align:center;
-    color:blue;
+#help {
+    width: 80%;
+    background-color: white;
+    color: black;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px solid #aaa;
 }
-
-.tabs2{
-margin-left:;
-
-
+#testarea,
+#Home,
+#Recurrence,
+#MathInduction,
+#quadfull,
+#fullLinear,
+#tohfull {
+    margin: 0 auto;
+    height: auto;
+    width: 80%;
+    margin-top: 20px;
+    background-color: rgba(156, 152, 193, 0.36);
+    text-align: center;
+    color: blue;
 }
-.tabs3{
-margin-left: ;
-
+#recurrenceproof {
+    width: 45%;
 }
-#Examples .tabs2 li a { border-color: #75ECFD;background-color:grey;  }
-#Examples .tabs3 li a { border-color: #75ECFD;background-color:white; }
-#pattern{
-margin:0 auto;
+.proofcolumns {
+    float: left;
+    background-color: grey;
 }
-#recImage,#recImage2,#recImage3{
-    width:50%;
-    height:200px;
-    background-size: 100% 100%;
-    background-color: #D698FE;
-    margin:0 auto;
+.tabs2 {
+    margin-left: ;
 }
-.moves{
-     text-decoration: underline;
+.tabs3 {
+    margin-left: ;
 }
-#recImage{
-    background-image:url(disk1.jpg);
+.hidden {
+    display: none;
 }
-#recImage2{
-    background-image:url(disk2.jpg);
+#Examples .tabs2 li a {
+    border-color: #75ECFD;
+    background-color: grey;
 }
-#recImage3{
-    background-image:url(disk3.jpg);
-}
-#test1,#test2,#test3,#test4,#test5,#test6{
-
-    width:80%;
-    height: 20px;
-    text-align: right;
-    color:green;
-    font-size: 1em;
-
-}
-#firstdifftext{
-    width:50px;
-    text-align: right
-}
-#firstdifftext{
-    width:70px;
-    text-align: right
-}
-#second1,#second2,#second3,#second4,#second5,#second6{
-    width:100%;
-    padding-top: 20px;
-    height:25px;
-     font-size: 1em;
-    text-align: right;
-    color:red;
-}
-#hortable{
-padding-top: 50px;
-    width:80%;
-    margin:0 auto;
-}
-#hortable td{
-    width:auto;
-}
-#closedForm{
-}
-.container{
-    width:80%;
-}
-#closedFormArea{
-width:100%;
-top:0;
-}
-.form-control{
-   border: 5px solid #A27AFE; 
-}
-#loginbutton{
-
+#Examples .tabs3 li a {
+    border-color: #75ECFD;
     background-color: white;
 }
-#registerbutton{
-background-color:white;
-font-size: 1.5em;
+#pattern {
+    margin: 0 auto;
 }
-#myTab{
-font-size: 1em;
-padding-top:0px;
-margin-top: 0px;
+#recImage,
+#recImage2,
+#recImage3 {
+    width: 50%;
+    height: 200px;
+    background-size: 100% 100%;
+    background-color: white;
+    margin: 0 auto;
 }
-#myTab li a { border-color: #75ECFD;background-color:#D698FE; }
-#myTab li.active a {border-bottom-color: transparent;background-color:#A095EE; }
-#logInForm{
-margin-top:50px;
-display:block;
-background-color:#D0BCFE;
+.moves {
+    text-decoration: underline;
 }
-#logInForm label{
-display:inline-block;
-width: 100px;
+#recImage {
+    background-image: url(disk1.jpg);
 }
-#logInForm #inputdiv,#inputdiv #password{
-display:inline-block;
+#recImage2 {
+    background-image: url(disk2.jpg);
+}
+#recImage3 {
+    background-image: url(disk3.jpg);
+}
+#test1,
+#test2,
+#test3,
+#test4,
+#test5,
+#test6 {
+    width: 80%;
+    height: 20px;
+    text-align: right;
+    color: green;
+    font-size: 1em;
+}
+#firstdifftext {
+    width: 50px;
+    text-align: right
+}
+#firstdifftext {
+    width: 70px;
+    text-align: right
+}
+#second1,
+#second2,
+#second3,
+#second4,
+#second5,
+#second6 {
+    width: 100%;
+    padding-top: 20px;
+    height: 25px;
+    font-size: 1em;
+    text-align: right;
+    color: red;
+}
+#hortable {
+    padding-top: 50px;
+    width: 80%;
+    margin: 0 auto;
+}
+#hortable td {
+    width: auto;
+}
+#closedForm {} .container {
+    width: 80%;
+}
+#closedFormArea {
+    width: 100%;
+    top: 0;
+}
+.form-control {
+    border: 5px solid #A27AFE;
+}
+#loginbutton {
+    background-color: white;
+}
+#registerbutton {
+    background-color: white;
+    font-size: 1.5em;
+}
+#myTab {
+    font-size: 1em;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+#myTab li a {
+    border-color: #75ECFD;
+    background-color: #D698FE;
+}
+#image{
+    background-image:url(smiley.jpg);
+margin:0 auto;
 
 }
 
-input{
-border: 5px solid #A27AFE; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
+#myTab li.active a {
+    border-bottom-color: transparent;
+    background-color: #A095EE;
+}
+#logInForm {
+    margin-top: 50px;
+    display: block;
+    background-color: #D0BCFE;
+}
+#logInForm label {
+    display: inline-block;
+    width: 100px;
+}
+#logInForm #inputdiv,
+#inputdiv #password {
+    display: inline-block;
+}
+input {
+    border: 5px solid #A27AFE;
+    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    background: rgba(255,255,255,0.0);
+    background: rgba(255, 255, 255, 0.0);
     margin: 0 0 10px 0;
-
 }
-
-#buttonsarea{
-    height:auto;
-    width:400px;
-    margin:0 auto;
+#buttonsarea {
+    height: auto;
+    width: 400px;
+    margin: 0 auto;
 }
-.col-md-4{
-width:360px;
-
+.col-md-4 {
+    width: 360px;
 }
-.arrow{
-font-size: ;
-color:blue;
+.arrow {
+    font-size: ;
+    color: blue;
 }
-.column1,.column2,.column3,.column4,.column5{
+.column1,
+.column2,
+.column3,
+.column4,
+.column5 {
     padding-top: 20%;
     padding-left: 50px;
 }
-#findDifference{
-    width:auto;
-    height:auto;
-
-    margin-top:30px;
+#findDifference {
+    width: auto;
+    height: auto;
+    margin-top: 30px;
 }
-#Difference, #Difference2{
-    height:90px;
-    background-color:white;
-    color:black;
+#Difference,
+#Difference2 {
+    height: 90px;
+    background-color: white;
+    color: black;
 }
-#Difference2 .arrow{
-    color:red;
+#Difference2 .arrow {
+    color: red;
 }
-
-button{
-width:auto;
-background: #86BCFF;
-color:black;
-height:auto;
-margin-top:50px;
-margin-bottom:50px;
+button {
+    width: auto;
+    background: #86BCFF;
+    color: black;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
-#proofMessage{
-
-    color:green;
+#proofMessage {
+    color: green;
 }
-#recTable{
+#recTable {
     margin: 0 auto;
     margin-bottom: 50px;
 }
-#rec1,#rec2,#rec3{
-    width:33%;
+#rec1,
+#rec2,
+#rec3 {
+    width: 33%;
     margin-right: 25px;
 }
-table.inductionTable{
-    width:100%;
+table.inductionTable {
+    width: 100%;
     margin: 0 auto;
 }
-table.recurrenceTable{
-    width:100%;
+table.recurrenceTable {
+    width: 100%;
     text-align: center;
     margin: 0 auto;
 }
-table.recurrenceTable td{
-    width:50px;
+table.recurrenceTable td {
+    width: 50px;
     margin: 0 auto;
 }
-table.inductionTable tr{
-margin-top:20px;
+table.inductionTable tr {
+    margin-top: 20px;
 }
-#error{
-color:red;
-
+#error {
+    color: red;
 }
-#rec2{
-    
-}
-#step1, #trueorFalse{
-    width:200px;
-    color:blue;
+#step1,
+#trueorFalse {
+    width: 200px;
+    color: blue;
     margin-top: 50px;
-    height:;
+    height: ;
 }
-#step2{
-    width:200px;    
-    color:blue;
+#step2 {
+    width: 200px;
+    color: blue;
     margin-top: 50px;
 }
-#step3{
-    width:200px;
-    color:blue;
+#step3 {
+    width: 200px;
+    color: blue;
     margin-top: 50px;
 }
-table.inductionTable td{
+table.inductionTable td {
     padding-top: 50px;
-    padding-bottom: 50px ;
+    padding-bottom: 50px;
     border-bottom: 2px solid pink;
 }
-
-#true{
-
-    color:green;
+#true {
+    color: green;
 }
-.table{
+.table {
     margin: 0 auto;
 }
-.numberInput,.sequenceval, .guess,#term{
-border: 5px solid #A27AFE; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
+.numberInput,
+.sequenceval,
+.guess,
+#term {
+    border: 5px solid #A27AFE;
+    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    background: rgba(255,255,255,0.0);
-    width:50px;
-    height:50px;
+    background: rgba(255, 255, 255, 0.0);
+    width: 50px;
+    height: 50px;
     background-color: white;
-     
 }
-td{
-    width:;
-    
+td {
+    width: ;
 }
-#Recurrence{
-    margin:0 auto;
-    
+#Recurrence {
+    margin: 0 auto;
 }
-
-.container{
-background-color: white;
+.container {
+    background-color: white;
 }
-.nav-tabs{
-  background-color:white;
-  color:white;
-font-size: 150%;
+.nav-tabs {
+    background-color: white;
+    color: white;
+    font-size: 150%;
 }
-
-.modal-body{
+.modal-body {
     background-image: url(toh.jpg);
-    color:blue;
+    color: blue;
     background-size: cover;
 }
-#inputdiv #password{
-    width:100%;
-    background-color:white;
+#inputdiv #password {
+    width: 100%;
+    background-color: white;
     height: 34px
 }
 .modal-body .form-horizontal .col-sm-2,
@@ -354,41 +379,33 @@ font-size: 150%;
 .modal-body .form-horizontal .col-sm-offset-2 {
     margin-left: 15px;
 }
-#usernametxt,#passwordtxt{
-width:30%;
-margin: 0 auto;
-}
-.form-group{
-    width:50%;
+#usernametxt,
+#passwordtxt {
+    width: 30%;
     margin: 0 auto;
 }
-img  {
- 
+.form-group {
+    width: 50%;
+    margin: 0 auto;
 }
-#logo{
-    height:50px;
-    width:50px;
-    top:50;
-    left:0;
+#logo {
+    height: 50px;
+    width: 50px;
+    top: 50;
+    left: 0;
     background-image: url('logo.svg.png');
 }
-#recsubmit{
+#recsubmit {
     margin: 0 auto;
 }
-#diffex{
+#diffex {
     padding-left: 25px;
 }
-#username, #password{
-bottom:2;
-color:black;
+#username,
+#password {
+    bottom: 2;
+    color: black;
 }
-.nav-tabs{
-
-
-}
-.nav-tabs li a{
-color:black;
-}
-.nav-tabs .active{
-
+.nav-tabs li a {
+    color: black;
 }
