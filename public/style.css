@@ -22,6 +22,9 @@ p.title {
 .row {} .col-md-5 p {
     color: #790765;
 }
+#hint{
+    color:red;
+}
 #move1,
 #move2,
 #move3 {
@@ -334,7 +337,7 @@ table.inductionTable td {
 .numberInput,
 .sequenceval,
 .guess,
-#term {
+#term,.linguess {
     border: 5px solid #A27AFE;
     -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);

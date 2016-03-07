@@ -121,7 +121,7 @@ break;
 
 }
 });
-
+$("#proofbutton").hide();
 $(".prev").click(function(){
 $("#recurrencearea").show();
 $("#MathInduction").hide();
@@ -129,6 +129,7 @@ $("#MathInduction").hide();
 $answers = [];
 $numbers = [];
 $closedformAnswers = [];
+$linclosedformAnswers = [];
 var count = 0;
 $("#findDiff").hide();
 function move(element){
@@ -186,7 +187,7 @@ $("input.numberInput").keypress(function (e) {
                return false;
     }
    });
-
+$("#hint").hide();
 $('#recsubmit').click(function(){
 	count = 0;
 	$numbers.length = 0;
@@ -197,7 +198,6 @@ $firstnumber = parseInt($('#firstnumber').val(), 10);
 $secondnumber = parseInt($('#secondnumber').val(), 10); 
 $thirdnumber = parseInt($('#thirdnumber').val(), 10);
 if($("#initialnumber").val().length == 0 || $("#firstnumber").val().length == 0 ||$("#secondnumber").val().length == 0 ||$("#thirdnumber").val().length == 0 ){
-	alert("oops");
 	$("#vertseq").empty();
 }else{
 	$answers.length = 0;
@@ -209,19 +209,19 @@ $("#vertseq").empty();
 	//$(".result").append(("<br /><div id = 'firstdifftext'>First Difference</div><div id ='seconddifftext'>Second Difference</div>"));
 	$("#buttons").append("<button id = 'clear'>Clear</button><br /><br />");
 	$("#clear").show();
+$("#hint").show();
 	$("#vertseq").append(("<td>U(1) = <br /><input type = 'text' class = 'sequenceval' readonly = 'true' value ='"+$n +"'/><br /><div id = 'test1'></div><div id ='second1'></div></td>"));
 	for (var i = 2; i<=6; i++){
 		var j = i-1;
 		$answer = $firstnumber*$n+($secondnumber*i)+$thirdnumber;
 	$n = $answer;
-	$answers.push("<td>U("+i+") = <br/><input type = 'text' class ='sequenceval' id='"+$answer+"'/><span class=' glyphicon glyphicon-question-sign' data-toggle='tooltip' title ='Un ="+ $firstnumber+"*"+'U('+j+')'+"+"+$secondnumber+"n +"+$thirdnumber+"' aria-hidden='true'></span><div id = 'test"+i+"'></div><div id ='second"+i+"'></div>"+"</td>");
+	$answers.push("<td>U("+i+") = <br/><input type = 'text' class ='sequenceval' id='"+$answer+"'/><span class=' glyphicon glyphicon-question-sign' data-toggle='tooltip' title ='U("+i+") ="+'U('+j+')'+"+"+$secondnumber+"( "+i+")+"+$thirdnumber+"' aria-hidden='true'></span><div id = 'test"+i+"'></div><div id ='second"+i+"'></div>"+"</td>");
 $("#hortable").show();
 }
 
 $('[data-toggle="tooltip"]').tooltip(); 
 if($answers.length == 5){
 	$("#diffex").append("");
-
 $("#vertseq").append($answers);
 $("input.sequenceval").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
@@ -237,10 +237,12 @@ $(".recurrenceTable").show();
 }
 }
 $("#buttons #clear").click(function(){
+	$("#hint").hide();
 $answers.length = 0;
 $("#clear").hide();
 $numbers.length = 0;
 $closedformAnswers.length = 0;
+$linclosedformAnswers.length = 0;
 $("#closedHelp").hide();
 $(".recurrenceTable .result").empty();
 $(".recurrenceTable #closedFormArea").empty();
@@ -291,9 +293,45 @@ $("#test5").append("1st <p><span class='glyphicon glyphicon-arrow-right' aria-hi
 
 if ((firstDifference == secondDifference) && (secondDifference==thirdDifference) &&(thirdDifference ==fourthDifference)){
 
-	alert("all values are equal");
-}else{
+$("#closedFormArea").append("<button id ='closedForm'>Generate Closed Form Expression</button><br />");
+ move("#closedForm");
 
+a = firstDifference;
+b = a - $n;
+	if($n < firstDifference){
+	b= -Math.abs(b);
+}else if ($n > firstDifference){
+	b = Math.abs(b);
+}
+$("#closedForm").one('click',function(){
+$("#closedFormArea #closedFormGuess").empty();
+$("#closedHelp").show();
+$("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='text' id = "+a+" data-toggle='tooltip' class ='linguess' title = 'A = The difference'/>n +<input type ='text' id = "+b+" data-toggle='tooltip' class ='linguess' title = 'B = (First difference ("+initialDifference+" ) - (3*A))'/></div>"); 
+ move(".linguess");
+});
+
+var reccount=0;
+$("#proofbutton").hide();
+$( '#closedFormArea' ).on( 'keyup', '.linguess', function () {  
+$("#checkAny").empty();
+var value = $(this).val();
+var aID = $(this).attr("id");
+if (value == aID){
+$(this).css('border', '3px solid green'); 
+$(this).prop("readonly", true);
+$linclosedformAnswers.push(value);
+reccount++;
+}else{
+	$(this).css('border', '3px solid red'); 
+}   
+if($linclosedformAnswers.length ==2){
+	$('#checkAny').empty();
+$( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
+move("#checkAny");
+}
+});
+
+}else{
 var initialDifference2 = firstDifference - initialDifference;
 var firstDifference2 = secondDifference - firstDifference;
 var secondDifference2 = thirdDifference - secondDifference;
@@ -302,7 +340,7 @@ $('#second1').append("2nd <p><span class='glyphicon glyphicon-arrow-right' aria-
 $('#second2').append("2nd <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+firstDifference2+"</p>");
 $('#second3').append("2nd <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+secondDifference2+"</p>");
 $('#second4').append("2nd <p><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>"+thirdDifference2+"</p>");
-}
+
 $("#closedFormArea").append("<button id ='closedForm'>Generate Closed Form Expression</button><br />");
  move("#closedForm");
 
@@ -317,7 +355,8 @@ $("#closedHelp").show();
 $("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='text' id = "+a+" data-toggle='tooltip' class ='guess' title = 'A =(Half of the second difference)'/>n&#178; +<input type ='text' id = "+b+" data-toggle='tooltip' class ='guess' title = 'B = (First difference ("+initialDifference+" ) - (3*A))'/>n + <input type ='text' id = "+c+" class ='guess' data-toggle='tooltip' title = 'C = (A+B) - (your value) = First term in sequence '/></div>"); 
  move(".guess");
 });
-});
+
+
 var reccount=0;
 $("#proofbutton").hide();
 $( '#closedFormArea' ).on( 'keyup', '.guess', function () {  
@@ -328,7 +367,7 @@ if (value == aID){
 $(this).css('border', '3px solid green'); 
 $(this).prop("readonly", true);
 $closedformAnswers.push(value);
-$.unique($closedformAnswers);
+//$.unique($closedformAnswers);
 reccount++;
 }else{
 	$(this).css('border', '3px solid red'); 
@@ -339,7 +378,8 @@ $( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a value of n:<in
 move("#checkAny");
 }
 });
-
+}
+});
 $("#closedFormArea").on("keyup", "#term", function(){
 	$("#term").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
@@ -351,7 +391,7 @@ $("#closedFormArea").on("keyup", "#term", function(){
    });
 	$("#step1,#step1Eq,#step2Eq,#step2,#step3,#step3Eq,#trueorFalse").empty();
 	$("#termAns").empty();
-
+if($closedformAnswers.length ==3){
 var userinput = $(this).val();
 var firstterm = (userinput *userinput)*a;
 var secondterm = b * userinput;
@@ -409,7 +449,7 @@ $("#step2Eq").append("Let's assume the recurrence relation is equal to the close
 $("#step2Eq").append("U(k) ="+$a +"k&#178; + " +b+ "(k) "+operator+ c+" <br /><br />");
 $("#step3").append("Step 3");
 $("#step3Eq").append("We want to show that U(k + 1) = T(k + 1). <br /><br />");
-$("#step3Eq").append("U(k+1) ="+firstnumber+"U(k) +"+$secondnumber+"k +"+$thirdnumber+" <br /><br />");
+$("#step3Eq").append("U(k+1) ="+firstnumber+"U(k) +"+$secondnumber+"(k + 1) +"+$thirdnumber+" <br /><br />");
 $("#step3Eq").append("We know that U(k) in the equation above is equal to " +$a +"k&#178; + " +b+ "(k) "+operator+ c+" so we can replace the U(k) our recurrence relation. <br /><br />");
 $("#step3Eq").append("U(k+1) = "+firstnumber+"("+$a +"k&#178; + " +b+ "(k) "+operator+ c+") + " +$secondnumber+"(k + 1) +"+$thirdnumber+" <br /><br />");
 $("#step3Eq").append("       = "+$a+"k&#178; + " +b+ "(k) "+operator+ c+" + " +$secondnumber+"k +" + $secondnumber +" + "+$thirdnumber+" <br /><br />");
@@ -433,8 +473,86 @@ $("#MathInduction").show();
 	$("#step2Eq").append("They are not equal<br /><br />");
 
 }
+
+});
+}else{
+
+var userinput = $(this).val();
+var firstterm = userinput*a;
+var answer = firstterm+b;
+if(userinput == ""){
+	$("#termAns").empty();
+}else{
+$("#termAns").append("<p>U("+userinput+") = "+answer +"<br/></p>");
+$("#termAns").append("<p>T("+userinput+") = "+answer+"</p.");
+move("#termAns");
+$("#proof").show();
+	$("#proofbutton").show();
+}
+if (a ==1){
+	$a = "";
+}else{
+	$a = a;
+}
+if ($firstnumber = 1){
+	var firstnumber = "";
+}else{
+	firstnumber = $firstnumber;
+}
+if(b < 0){
+var operator = "";
+}else{
+	operator = "+";
+}
+
+var closedFormEq = "T(n) = " +$a +"n " +operator+b;
+$("#proof").on('click', function(e){
+	$("#step1,#step1Eq,#step2Eq,#step2,#step3,#step3Eq,#trueorFalse").empty();
+	$("#recurrencearea").hide();
+e.preventDefault();
+$("#step1").append("Step 1");
+$("#step1Eq").append("Initially we need to recheck what U(1) is in our recurrence relation:<br /><br />");
+var recurrenceans = "U(1) = "+ $n +"<br /><br />";
+$("#step1Eq").append(recurrenceans);
+$("#step1Eq").append("For step 1 to be true, when we enter 1 into our Closed-form expression we should get the same answer as the U(1) in our Recurrence Relation: <br /><br />");
+$("#step1Eq").append(closedFormEq +"<br />");
+$("#step1Eq").append("T(1) = "+$a+"(1) "+operator+b+"<br /><br />");
+var closedn1 = (a*(1)+(b));
+$("#step1Eq").append("T(1) = "+closedn1);
+if (closedn1 == $n)
+{
+$("#trueorFalse").append("<div id = 'true'>TRUE!</div>");
+$("#step2").append("Step 2");
+$("#step2Eq").append("Let's assume the recurrence relation is equal to the closed-form expression for arbitrary integer k. <br /><br />");
+$("#step2Eq").append("U(k) ="+$a +"k "+operator +b+" <br /><br />");
+$("#step3").append("Step 3");
+$("#step3Eq").append("We want to show that U(k + 1) = T(k + 1). <br /><br />");
+$("#step3Eq").append("U(k+1) ="+firstnumber+"U(k + 1) +"+$thirdnumber+" <br /><br />");
+$("#step3Eq").append("We know that U(k) in the equation above is equal to " +$a +"k " +operator+b+ " so we can replace the U(k) our recurrence relation. <br /><br />");
+$("#step3Eq").append("U(k+1) = "+firstnumber+"("+$a +"k " +operator+b+" ) +" +$thirdnumber+"<br /><br />");
+$("#step3Eq").append("       = "+$a+"k  "+operator +b+ " + " + $thirdnumber +" <br /><br />");
+var simplified1 = b+$thirdnumber;
+
+$("#step3Eq").append("       ="+$a +"k + " +simplified1 +"<br /><br /><br /><br />");
+var simplified4 = $a*1;
+$("#step3Eq").append("    T(k+1) = "+ $a +"(k + 1) "+operator + b +" <br /><br />");
+$("#step3Eq").append("     = "+ $a + "k + "+simplified4 +" "+operator+b+" <br /><br />");
+var simplified5 = simplified4+b;
+$("#step3Eq").append("     = "+ $a + "k  +"+simplified5+" <br /><br />");
+
+
+$("#step3Eq").append("<br /><br /><br />");
+$("#step3Eq").append("So we can see that both  U(k+1) = T(k+1) = " +$a + "k + "+simplified5);
+
+$("#MathInduction").show();
+}else{
+	$("#step2Eq").append("They are not equal<br /><br />");
+
+}
+
 });
 
+}
 
 });
 

@@ -8,9 +8,15 @@ class Answer extends Model
 {
     protected $table = 'answer'; // or whatever your table is
     protected $primaryKey = 'answer_id';
+     protected $fillable = ['question_id'];
 
     public function question()
     {
-        return $this->hasOne('Algorithmaths\Question', 'question_id');
+        return $this->belongsTo('Algorithmaths\Question','question_id')->distinct();
     }
+   
+    public function user () {
+        return $this->belongsTo('App\User');
+    }
+
 }

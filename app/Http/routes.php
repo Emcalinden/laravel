@@ -11,22 +11,12 @@
 |
 */
 Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@create']);
-//Route::get('login','SessionsContoller@create');
 Route::get('logout','SessionsController@destroy');
 Route::post('register', [ 'as' => 'register', 'uses' => 'WelcomeController@store']);
-//Route::post('recurrence', ['as' => 'recurrence', 'uses' => 'RecurrenceController@recurrence']);
+Route::post('test', [ 'as' => 'test', 'uses' => 'QuestionController@store']);
 Route::get('index', 'WelcomeController@index');
-
-//Route::get('questions',['as'=>'questions', 'uses' => 'QuestionsController@index']);
-//Route::get('question', [ 'as' => 'pages.index', 'uses' => 'QuestionsController@index']);
-//Route::get('', function() {
-
-//$questions = \Algorithmaths\Question::find(1);
-//return View::make('pages.index', compact('questions'));
-//});
-//Route::resource('question', 'QuestionsController');
-//Route::resource('question','QuestionController');
 Route::resource('sessions', 'SessionsController');
+Route::resource('test', 'QuestionsController');
 
 
 

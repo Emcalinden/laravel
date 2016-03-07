@@ -13,26 +13,24 @@ use View;
 class QuestionsController extends Controller
 {
       
-    
- public function index () {
-  
-     //$questions = Question::all();
 
-    // return $questions;
-//return view::make('pages.index',compact('questions'));
-    //return Redirect::to('index', compact('questions'));
-           //return Redirect::to('/')->with('questions',$questions);
-   // return View::make('pages.index',compact('questions'));
-      //return View::make('pages.index',compact('questions'));
-//return 'get stuff';
+ public function index () {
+     $question = Question::latest()->get();
+     return view('pages.index',compact('question'));
+ }
+    
+
+  public function show ($id) {
+      $question = Question::with('answer')->where('id','=',$id)->first();
+      return view('pages.index',compact('question'));
+  } 
+
+  public function store(Request $request)
+    {
+
+      
+          return Redirect::to('index');
 
     }
-    
 
-  public function store (StoreQuestionRequest $request) {
-     
-  }
-  public function show ($id) {
-
-  }  
 }

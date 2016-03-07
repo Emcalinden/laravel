@@ -446,18 +446,27 @@ will be asked to enter the sequence once you submit.
 <div id ='testarea'>
 <h1 class = 'quiztitle'>Test Yourself!! </h1>
 
-
+{!! Form::open(['route' => 'test.store']) !!}
 
 @foreach ($questions as $question)
-<h2>{{$question -> question}}</h2>
-@foreach ($answers as $answer)
-<p><input type="radio" name="answer" value=$answer>{{$answer -> answer}}</p>
-@endforeach
-@endforeach
+<div class="question">
+    <h2>{{$question->question}}</h2>
+
+    @foreach ($question->answer as $answer)    
+        <p><input type="radio" name={{$question->question}} value={{$answer->answer}} required>{{$answer->answer}}</p>
+    @endforeach
 </div>
+@endforeach
+<p>{!! Form::submit('Submit', array('id'=>'submitbutton','class'=>'send-btn')) !!}</p>
+
+{!! Form::close()!!}
+
+
+</div>
+
   <td> </td>
 
- 
+
 <!--button id = "start">Start the test</button-->
 <!--div id ="questions">Test has started
 

@@ -15,7 +15,8 @@ class CreateAnswerTable extends Migration
      Schema::create('answer', function($table) {
 	 $table -> increments('answer_id');
 	 $table-> string('answer');
-     $table -> integer('question_id')->length(10)->unsigned();
+    $table->integer('question_id')->unsigned();
+;
      $table -> boolean('correct_answer');
      $table->timestamps();
 	});

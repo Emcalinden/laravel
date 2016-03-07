@@ -23,22 +23,26 @@ class WelcomeController extends Controller
    public function index()
     { 
         $title = 'Algorithmaths';
-        $questions = Question::all();
-        $question_id = Question::find('question_id');
-        //$post = Post::whereUrl($url)->first();
+        //$questions = Question::all();
+        $question_id = Question::get()->lists('question_id');
 
-        //$answers = $questions->answer;
+        $questions = Question::with('answer')->get();
+        //dd($questions); 
+         //return collect($array)->unique('id')->all();
+        $answers = Answer::with('question')->first()->get();
 
-         //$answers = Answer::where('question_id')->get();
-        $answers = Answer::find(1)->where('question_id', 1)->get(); 
 
 		$text = 'This site aims to guide you in learning recurrence relations
 		and proof by mathematical induction. You can learn the recurrence relations 
 		and proof by mathematical induction as a non-registered user although
 		if you decide to register you can test yourself on the subject from a beginner
 		level right up to a more difficult level. ';
-        return View::make('pages.index',compact('title', 'text','questions','answers'));
+        return View::make('pages.index',compact('title', 'text','questions','answers','question_id'));
     }
+     public function show ($id) {
+      $question = Question::with('answer')->where('question_id','=',$id)->first();
+      return view('index',compact('question'));
+  }  
 
     public function create()
     {
@@ -93,16 +97,7 @@ class WelcomeController extends Controller
     }
 	
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -8,12 +8,15 @@ class Question extends Model
 {
 protected $table = 'question';
 protected $primaryKey = 'question_id';
-  
-
-  protected $fillable = ['question'];
+protected $fillable = ['question'];
 
 public function answer() {
-        return $this->belongsToMany('Algorithmaths\Answer','answer_id');
+        return $this->hasMany('Algorithmaths\Answer');
     }
+
+ public function user () {
+     return $this->belongsTo('Algorithmaths\User');
+ }
+
 
 }

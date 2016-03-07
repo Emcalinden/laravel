@@ -39,4 +39,13 @@ public function getRememberTokenName()
 }
 public function getAuthIdentifier() { return $this->getKey(); }
 public function getAuthPassword() { return $this->password; }
+
+public function question () {
+        return $this->hasMany('Algorithmaths\Question');
+    }
+
+    public function answer () {
+        return $this->belongsTo('Algorithmaths\Answer');
+    }
+
 }
