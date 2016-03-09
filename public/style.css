@@ -15,6 +15,28 @@ body {
 p.title {
     font-size: 500%;
 }
+.question{
+    border: 1px solid #aaa;
+background-color: white;
+    margin-bottom: 10px;
+}
+#resultsTable{
+    margin:0 auto;
+    border: 1px solid #aaa;
+    background-color: #A27AFE;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width:40%;
+    color:white;
+    text-align: center;
+
+}
+input[type=radio]{
+  width   : 28px;
+  margin  : 0;
+  padding : 0;
+
+}
 .quiztitle,
 .towersTitle {
     color: purple;

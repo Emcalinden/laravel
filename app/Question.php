@@ -14,9 +14,4 @@ public function answer() {
         return $this->hasMany('Algorithmaths\Answer');
     }
 
- public function user () {
-     return $this->belongsTo('Algorithmaths\User');
- }
-
-
 }

@@ -14,9 +14,6 @@ class Answer extends Model
     {
         return $this->belongsTo('Algorithmaths\Question','question_id')->distinct();
     }
-   
-    public function user () {
-        return $this->belongsTo('App\User');
-    }
+
 
 }

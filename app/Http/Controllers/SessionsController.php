@@ -56,14 +56,17 @@ class SessionsController extends Controller
         'password' => $pass
         );
 
+
         if(Auth::attempt($credentials)) {
 
             \Session::put('flash_message',Auth::user()->username);
             return Redirect::to('index');
+            Session::save();
         }
         else {
              return 'auth failed';
         }       
+        
     
         }
 

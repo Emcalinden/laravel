@@ -13,64 +13,106 @@ class AddAnswers extends Migration
     public function up()
     {
         DB::table('answer')->insert(array(
-        'answer' => 'answer here',
-        'question_id'=>1,
-        'correct_answer'=> true,
-        'created_at' => date('Y-m-d H:m:s'),
-        'updated_at' => date('Y-m-d H:m:s')
-        ));
-      DB::table('answer')->insert(array(
-        'answer' => 'answer here 2',
+        'answer' => '6, 8, 12, 30, 84',
         'question_id'=>1,
         'correct_answer'=> false,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => 'answer here 3',
+        'answer' => '2, 4, 10, 28, 82',
         'question_id'=>1,
         'correct_answer'=> true,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => '2 answer here',
+        'answer' => '1, 4, 10, 28, 82',
+        'question_id'=>1,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => '1.008',
         'question_id'=>2,
         'correct_answer'=> false,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => '2 answer here 2',
-        'question_id'=>2,
-        'correct_answer'=> false,
-        'created_at' => date('Y-m-d H:m:s'),
-        'updated_at' => date('Y-m-d H:m:s')
-        ));
-      DB::table('answer')->insert(array(
-        'answer' => '2 answer here 3',
+        'answer' => '5.008',
         'question_id'=>2,
         'correct_answer'=> true,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => '3 answer here',
+        'answer' => '5.08',
+        'question_id'=>2,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => '-161',
         'question_id'=>3,
         'correct_answer'=> true,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => '3 answer here 2',
+        'answer' => '-53',
         'question_id'=>3,
         'correct_answer'=> false,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')
         ));
       DB::table('answer')->insert(array(
-        'answer' => '3 answer here 3',
+        'answer' => '53',
         'question_id'=>3,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => 'U2 = -7, U3 = 11, U4 = -25',
+        'question_id'=>4,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => 'U2 = 7, U3 = -11, U4 = 25',
+        'question_id'=>4,
+        'correct_answer'=> true,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => 'U2 = 7, U3 = 11, U4 = 25',
+        'question_id'=>4,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => '5',
+        'question_id'=>5,
+        'correct_answer'=> true,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => '8',
+        'question_id'=>5,
+        'correct_answer'=> false,
+        'created_at' => date('Y-m-d H:m:s'),
+        'updated_at' => date('Y-m-d H:m:s')
+        ));
+      DB::table('answer')->insert(array(
+        'answer' => '2',
+        'question_id'=>5,
         'correct_answer'=> false,
         'created_at' => date('Y-m-d H:m:s'),
         'updated_at' => date('Y-m-d H:m:s')

@@ -1,11 +1,13 @@
 <!doctype html>
 <html>
 <meta name="env" content="{{ App::environment() }}">
-<!--meta name="token" content="{{ Session::token() }}"-->
+<meta name="token" content="{{ Session::token() }}">
 <head><title>Document</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="style.css"></head>
+
+
 <body>
 <div class = 'container'>
 <section class = 'jumbotron'>
@@ -445,6 +447,12 @@ will be asked to enter the sequence once you submit.
 <div id = "testHeader"></div>
 <div id ='testarea'>
 <h1 class = 'quiztitle'>Test Yourself!! </h1>
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>You got </strong> {{ Session::get('length', '') }} <strong> Correct!! </strong>
+    </div>
+@endif
 
 {!! Form::open(['route' => 'test.store']) !!}
 
@@ -453,10 +461,11 @@ will be asked to enter the sequence once you submit.
     <h2>{{$question->question}}</h2>
 
     @foreach ($question->answer as $answer)    
-        <p><input type="radio" name={{$question->question}} value={{$answer->answer}} required>{{$answer->answer}}</p>
+        <p><input type="radio" name={{ substr($question->question, 0, 10) }} value={{$answer->correct_answer}} required>{{$answer->answer}}</input></p>
     @endforeach
 </div>
 @endforeach
+
 <p>{!! Form::submit('Submit', array('id'=>'submitbutton','class'=>'send-btn')) !!}</p>
 
 {!! Form::close()!!}
@@ -464,21 +473,26 @@ will be asked to enter the sequence once you submit.
 
 </div>
 
-  <td> </td>
-
-
-<!--button id = "start">Start the test</button-->
-<!--div id ="questions">Test has started
-
-<div class="col-offset-6 centered">
-
-
-</div>
-
-</div-->
-
 </div>
 <div id = "Review">
+<table id = 'resultsTable'>
+@if(Session::has('success'))
+
+<tr><td>Date</td><td>Result</td></tr>
+@foreach($userResult as $res)
+@foreach($res->result as $all)
+<tr><td>{{$all->created_at}}</td>
+<td>{{$all->result}}</td></tr>
+@endforeach
+@endforeach
+</table>
+@endif
+
+
+
+
+<!--div id ='graph'style="min-width: 310px; height: 400px; margin: 0 auto"-->
+</div>
 </div>
 
 </div>
@@ -487,6 +501,8 @@ will be asked to enter the sequence once you submit.
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
 <script src="jquery.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 
 </body>

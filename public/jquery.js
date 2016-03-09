@@ -590,4 +590,43 @@ $('#myTab a:last').show();
 $('#myTab a[name="test"]').show();
 }
 
+var current = "<?php echo $length; ?>";
+
+$(function () {
+    $('#graph').highcharts({
+        title: {
+            text: 'Your results',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Previous test attempts',
+            x: -20
+        },
+        xAxis: {
+            categories: ['Test1', 'Test2', 'Test3', 'Test4', 'Test5', 'Test6',
+                'Test7', 'Test8', 'Test9', 'Test10']
+        },
+        yAxis: {
+            title: {
+                text: 'Result'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Result',
+            data: [current, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 100]
+        }] 
+    });
+});
+
 });

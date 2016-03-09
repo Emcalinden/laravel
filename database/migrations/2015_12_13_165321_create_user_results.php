@@ -12,16 +12,19 @@ class CreateUserResults extends Migration
      */
     public function up()
     {
-         Schema::create('user_result', function($table) {
-     $table-> integer('id')->length(10)->unsigned();
-	 $table-> integer('result_id')->length(10)->unsigned();
-		});
-
+     Schema::create('user_result', function($table) {
+    $table-> increments('result_id');
+    $table->integer('user_id')->unsigned();
+    $table->integer('result');
+    $table->timestamps();
+});
      Schema::table('user_result', function($table) {
-     $table->foreign('id')->references('id')->on('user')->onDelete('cascade');
-	 $table->foreign('result_id')->references('result_id')->on('result')->onDelete('cascade');
+     $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
     });
     }
+
+
+
 
     /**
      * Reverse the migrations.

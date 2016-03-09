@@ -14,6 +14,8 @@ use View;
 use Algorithmaths\User;
 use Algorithmaths\Question;
 use Algorithmaths\Answer;
+use Algorithmaths\Result;
+
 use Illuminate\Support\Facades\Input;
 use Hash;
 
@@ -22,7 +24,9 @@ class WelcomeController extends Controller
 
    public function index()
     { 
+                    //dd(Auth::user());
         $title = 'Algorithmaths';
+    
         //$questions = Question::all();
         $question_id = Question::get()->lists('question_id');
 
@@ -31,12 +35,18 @@ class WelcomeController extends Controller
          //return collect($array)->unique('id')->all();
         $answers = Answer::with('question')->first()->get();
 
+        $text = 'This site aims to guide you in learning recurrence relations
+        and proof by mathematical induction. You can learn the recurrence relations 
+        and proof by mathematical induction as a non-registered user although
+        if you decide to register you can test yourself on the subject from a beginner
+        level right up to a more difficult level. ';
+        if(Auth::check()){
+        $userResult = User::with('result')->where('id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        //dd($userResult);
+        return View::make('pages.index',compact('title', 'text','questions','answers','question_id','userResult'));
 
-		$text = 'This site aims to guide you in learning recurrence relations
-		and proof by mathematical induction. You can learn the recurrence relations 
-		and proof by mathematical induction as a non-registered user although
-		if you decide to register you can test yourself on the subject from a beginner
-		level right up to a more difficult level. ';
+         }
+
         return View::make('pages.index',compact('title', 'text','questions','answers','question_id'));
     }
      public function show ($id) {

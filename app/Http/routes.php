@@ -10,13 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@create']);
+//Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@create']);
 Route::get('logout','SessionsController@destroy');
 Route::post('register', [ 'as' => 'register', 'uses' => 'WelcomeController@store']);
 Route::post('test', [ 'as' => 'test', 'uses' => 'QuestionController@store']);
 Route::get('index', 'WelcomeController@index');
+Route::get('review', 'QuestionController@index');
 Route::resource('sessions', 'SessionsController');
 Route::resource('test', 'QuestionsController');
 
-
-
+Route::group(['middleware' => ['web']], function () {
+    Route::post('login',[ 'as' => 'login', 'uses' => 'SessionsController@create']);
+});

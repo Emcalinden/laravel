@@ -3,6 +3,8 @@
 namespace Algorithmaths;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Algorithmaths\Result;
+
 class User extends Model implements Authenticatable 
 {
     
@@ -12,7 +14,7 @@ class User extends Model implements Authenticatable
      * @var string
      */
     protected $table = 'user';
-	protected $primaryKey = 'user_id';
+	protected $primaryKey = 'id';
      protected $hidden = ['password'];
     /**
      * The attributes that are mass assignable.
@@ -28,6 +30,15 @@ class User extends Model implements Authenticatable
 	 public function getRememberToken()
 {
     return $this->remember_token;
+}
+public function getId()
+{
+  return $this->id;
+}
+
+public function result(){
+    return $this->hasMany('Algorithmaths\Result');
+
 }
 public function setRememberToken($value)
 {
