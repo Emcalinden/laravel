@@ -59,7 +59,9 @@ class SessionsController extends Controller
 
         if(Auth::attempt($credentials)) {
 
-            \Session::put('flash_message',Auth::user()->username);
+$name = Auth::user()->first_name;
+$name = ucfirst($name);  
+            \Session::put('flash_message',$name);
             return Redirect::to('index');
             Session::save();
         }

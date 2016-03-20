@@ -2,45 +2,103 @@
 <html>
 <meta name="env" content="{{ App::environment() }}">
 <meta name="token" content="{{ Session::token() }}">
-<head><title>Document</title>
+<head><title>Algorithmaths</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="style.css"></head>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<script src="jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
 
 <body>
+<div id="wrapper">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-pencil"></i><b>Algorithmaths</b></a>
+    </div>
+    <div id = 'authArea'>
+<button id = "lgnbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#loginmodal">Log In</button>
+<button id = "regbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#myModalNorm">Register</button>
+<a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout</a>
+</div>
+
+  </div><!-- /.container-fluid -->
+</nav>
 <div class = 'container'>
 <section class = 'jumbotron'>
 
 <p class = "title">{!! $title !!}</p>
-{!! Form::open(['route' => 'sessions.store']) !!}
 
-<div class="controls">
-{!!Form::text('username','',array('id'=>'usernametxt','class'=>'form-control span6','placeholder' => 'Please Enter your Username')) !!}
-<p class="errors">{{$errors->first('username')}}</p>
-</div>
-<div class="controls">
-{!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}
-<p class="errors">{{$errors->first('password')}}</p>
-</div>
-<p>{!! Form::submit('Login', array('id'=>'loginbutton','class'=>'send-btn')) !!}</p>
-{!! Form::close()!!}
-<a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout</a>
-<a id = "registerbutton" href = "#" data-toggle="modal" data-target="#myModalNorm">
-    Register
-</a>
+
 </section>
 <section class = 'nav'>
 <ul class="nav nav-tabs" id="myTab">
-			  <li class="active"><a data-target="#home" data-toggle="tab">Home</a></li>
-			  <li><a data-target="#notation" data-toggle="tab">Examples</a></li>
-			  <li><a data-target="#recurrence" data-toggle="tab">Interactive Area</a></li>
-			  <li><a data-target="#test" data-toggle="tab" name = "test">Test Yourself</a></li>
-			  <li><a data-target="#review" data-toggle="tab">Review </a></li>
+			  <li class="active"><a data-target="#home" data-toggle="tab"><b>Home</b></a></li>
+			  <li><a data-target="#notation" data-toggle="tab"><b>Examples</b></a></li>
+			  <li><a data-target="#recurrence" data-toggle="tab"><b>Interactive Area</b></a></li>
+			  <li><a data-target="#test" data-toggle="tab" name = "test"><b>Test Yourself</b></a></li>
+			  <li><a data-target="#review" data-toggle="tab"><b>Review </b></a></li>
 </ul>
 
 
 </section>
+<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span id = "closeicon" aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Log In
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                {!! Form::open(['route' => 'sessions.store']) !!}
+<div class = "form-group">
+<div id ="inputdiv">{!!Form::text('username','',array('id'=>'usernametxt','class'=>'form-control span6','placeholder' => 'Please Enter your Username')) !!}</div>
+<p class="errors">{{$errors->first('username')}}</p>
+<div id ="inputdiv">{!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}</div>
+<p class="errors">{{$errors->first('password')}}</p>
+</div>
+</div>           <!-- Modal Footer -->
+            <div class="modal-footer">
+
+        <div class = "form-group">
+        <td id = "buttons">
+        {!! Form::submit('Login', array('id'=>'loginbutton','class'=>'btn btn-primary form-control')) !!}
+<br />
+        {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
+        </td>
+{!! Form::close() !!}
+        </div>
+        
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -89,8 +147,112 @@
 <!-- Post Info -->
 <div id = "Home">
 
-<h3>Welcome to Algorithmaths<h3 class = 'AuthUser'>@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h3></h3>
+<h3>Welcome to Algorithmaths<h3 class = "AuthUser">@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h3></h3>
 <p>{!! $text !!}</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="carousel slide" id="carousel-462084">
+        <ol class="carousel-indicators">
+          <li data-slide-to="0" data-target="#carousel-462084">
+          </li>
+          <li data-slide-to="1" data-target="#carousel-462084">
+          </li>
+          <li data-slide-to="2" data-target="#carousel-462084" class="active">
+          </li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item">
+            <img alt="Carousel Bootstrap First" src="Examples.png" />
+          </div>
+          <div class="item">
+            <img alt="Carousel Bootstrap Second" src="intrec.png" />
+          </div>
+          <div class="item active">
+            <img alt="Carousel Bootstrap Third" src="progress.png" />
+          </div>
+        </div> <a class="left carousel-control" href="#carousel-462084" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-462084" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p>
+        As a non-registered user of Algorithmaths you get to see some examples of Recurrence Relations and Proof by Mathematical Induction. You also get to use the websites Interactive area, allowing you to enter recurrence relations and working your way through the problem. If you want to boost your skills or exam results, register to the website and you will have access to the test. 
+      Your scores get saved for you each time and you can come back to review them by clicking on the Review tab once you have logged in. 
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        Features
+      </h3>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            Examples
+          </h2>
+          <p>
+          There are plenty of examples to see on the website to look through if you are not too familiar with the subjects.
+          </p>
+          <p>
+            <a id="modalmore" href="#modal-container"name = 'examples' role="button" class="btn" data-toggle="modal">Read More</a>
+      <div class="modal fade" id="modal-container" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+               
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+              </button>
+              <h4 class="my-modal-title" id="myModalLabel">
+                
+              </h4>
+            </div>
+            <div class="modal-body" id ="infobody">
+              
+
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+          </p>
+          <h2>
+            Interactive Area
+          </h2>
+          <p>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          </p>
+          <p>
+            <a id="modalmore" href="#modal-container"name = 'interactive' role="button" class="btn" data-toggle="modal">Read More</a>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2>
+            Test
+          </h2>
+          <p>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          </p>
+          <p>
+            <a id="modalmore" href="#modal-container"name = 'test' role="button" class="btn" data-toggle="modal">Read More</a>
+          </p>
+          <h2>
+            Review
+          </h2>
+          <p>
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          </p>
+          <p>
+            <a id="modalmore" href="#modal-container"name = 'review' role="button" class="btn" data-toggle="modal">Read More</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <div id = "Examples">
 <section class = 'nav'>
@@ -392,22 +554,33 @@
 Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
 will be asked to enter the sequence once you submit. 
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+    <br />
+    <p>Enter in any numbers to the recurrence relation, and enter your initial term.</p>
+    <p>When you click submit, text boxes will appear for you to enter in the sequence terms yourself. </p>
+    <p>If you struggle, hover over the question mark for a hint.</p>
+
+    </div>
+    <div class="col-md-4">
+    <br />
 <table id ='recTable'>
   <tr>
     <td>
-	<label>U(n) = </label></td>
+  <label>U(n) = </label></td>
     <td><input type = "text" id = "firstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
-	<td><label>U(n-1) +</label></td>
-	<td><input type = "text" id = "secondnumber" class ="numberInput"></input></td>
-	<td><label>n +</label></td>
-	<td><input type = "text" id = "thirdnumber" class ="numberInput"></input></td>
+  <td><label>U(n-1) +</label></td>
+  <td><input type = "text" id = "secondnumber" class ="numberInput"></input></td>
+  <td><label>n +</label></td>
+  <td><input type = "text" id = "thirdnumber" class ="numberInput"></input></td>
   </tr>
   <tr>
     <td><label>U(1) =</label></td>
     <td><input type = "text" id = "initialnumber" class ="numberInput"></input></td> 
-	<td><span id="errmsg"></span></td>
-	<td id = 'buttons'></td>
-	<td></td>
+  <td><span id="errmsg"></span></td>
+  <td id = 'buttons'></td>
+  <td></td>
   </tr>
  <tr>
     <td></td>
@@ -417,11 +590,16 @@ will be asked to enter the sequence once you submit.
   <td></td>
   </tr>
 </table>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
+
+
 <table id = 'hortable'>
-<tr id = 'vertseq'>
-</tr>
+<tr id = 'vertseq'></tr>
 </table>
-</td>
 <table class = "recurrenceTable">
 <tr><td></td><td>
 <button id ='findDiff'>Find Difference</button></td><td></td>
@@ -430,6 +608,7 @@ will be asked to enter the sequence once you submit.
 <tr><td></td><td><div id = 'proofbutton'><button id = 'proof'>Show Proof by Mathematical Induction</button></div></td><td></td></tr>
 </table>
 </div>
+
 <div id = "MathInduction">
 <button class = 'prev'>Go Back to the Recurrence Relation</button>
 <table class = "inductionTable ">
@@ -458,7 +637,7 @@ will be asked to enter the sequence once you submit.
 
 @foreach ($questions as $question)
 <div class="question">
-    <h2>{{$question->question}}</h2>
+    <p>{{$question->question}}</p>
 
     @foreach ($question->answer as $answer)    
         <p><input type="radio" name={{ substr($question->question, 0, 10) }} value={{$answer->correct_answer}} required>{{$answer->answer}}</input></p>
@@ -474,11 +653,14 @@ will be asked to enter the sequence once you submit.
 </div>
 
 </div>
-<div id = "Review">
-<table id = 'resultsTable'>
-@if(Session::has('success'))
 
-<tr><td>Date</td><td>Result</td></tr>
+<div id = "Review" class ='row'>
+<h1>Progress</h1>
+
+<table id = 'resultsTable' class = 'col-md-6'>
+@if (Auth::user())
+
+<tr><th>Date</th><th>Result</th></tr>
 @foreach($userResult as $res)
 @foreach($res->result as $all)
 <tr><td>{{$all->created_at}}</td>
@@ -486,26 +668,39 @@ will be asked to enter the sequence once you submit.
 @endforeach
 @endforeach
 </table>
+<div class ='col-md-6'>
 @endif
+<h3>Your results @if(Session::has('flash_message')) {{Session::get('flash_message')}} @endif </h3>
+    <canvas id="canvas" height="300px" width="500px"></canvas>
+    @if(Auth::user())
 
 
+<script>
+var lineChartData = {
+    "datasets": [{
+        "data":  {{json_encode($dataArray)}}
+            ,
+            "pointStrokeColor": "grey",
+            "fillColor": "rgba(156, 152, 193, 0.36)",
+            "pointColor": "rgba(220,220,220,1)",
+            "strokeColor": "pink"
+    }],
+        "labels": {{json_encode($labelArray)}}
+};
 
-
-<!--div id ='graph'style="min-width: 310px; height: 400px; margin: 0 auto"-->
+var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+</script>
+@endif
 </div>
 </div>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
-<script src="jquery.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+
+<footer class = 'footer'> Footer</footer>
+</div>
 
 </body>
-
 
 </html>

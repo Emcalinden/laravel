@@ -48,7 +48,6 @@ $length  = count( array_keys( $array, 1 ));
     $result -> result = $length;
     $result -> save();
 
-
     return Redirect::to('index')->with('success', true)->with('length',$length);
 
        //return Redirect::to('index')->with('success', true)->with('length',$length);

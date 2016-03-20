@@ -1,0 +1,23 @@
+{
+	"features": [{
+		"id": "1",
+		"title":"Examples",
+		"name": "examples",
+		"text": "There are examples for linear recurrence relations. This is a good place to start if you are not too familiar with the subject. Once you grasp this you can then look at the Mathematical Induction of the Linear recurrences. Once you are confident in them you should move on to the quadratic recurrence relations and mathematical induction. You should really go over the examples before you move onto the Interactive area so you really get the full understanding and benefits."
+	}, {
+		"id": "2",
+		"title":"Interactive Area",
+		"name": "interactive",
+		"text": "More text about the interactive Area"
+	}, {
+		"id": "3",
+		"title":"Test Area",
+		"name": "test",
+		"text": "More text about the Test area"
+	}, {
+		"id": "4",
+		"title":"Review Area",
+		"name": "review",
+		"text": "More text about the review Area"
+	}]
+}

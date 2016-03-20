@@ -175,9 +175,10 @@ if ($numbers.length ==5){
 	move("#findDiff");
 }
 });
+ 
+
 var difference = null;
 $(".recurrenceTable").hide();
-
 
 $("input.numberInput").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
@@ -310,25 +311,31 @@ $("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='te
  move(".linguess");
 });
 
+
 var reccount=0;
 $("#proofbutton").hide();
 $( '#closedFormArea' ).on( 'keyup', '.linguess', function () {  
 $("#checkAny").empty();
 var value = $(this).val();
 var aID = $(this).attr("id");
-if (value == aID){
+
+if (value == aID){// 5 seconds
+
 $(this).css('border', '3px solid green'); 
 $(this).prop("readonly", true);
 $linclosedformAnswers.push(value);
-reccount++;
-}else{
-	$(this).css('border', '3px solid red'); 
-}   
+if($(".linguess:nth-child(2)")=="" &&$(".linguess:nth-child(1)")!=""){
+  $linclosedformAnswers.length==1;
+}
 if($linclosedformAnswers.length ==2){
-	$('#checkAny').empty();
+  $('#checkAny').empty();
 $( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
 move("#checkAny");
 }
+}else{
+	$(this).css('border', '3px solid red'); 
+}   
+
 });
 
 }else{
@@ -368,7 +375,6 @@ $(this).css('border', '3px solid green');
 $(this).prop("readonly", true);
 $closedformAnswers.push(value);
 //$.unique($closedformAnswers);
-reccount++;
 }else{
 	$(this).css('border', '3px solid red'); 
 }   
@@ -475,7 +481,7 @@ $("#MathInduction").show();
 }
 
 });
-}else{
+}else if($linclosedformAnswers.length ==2){
 
 var userinput = $(this).val();
 var firstterm = userinput*a;
@@ -554,6 +560,7 @@ $("#MathInduction").show();
 
 }
 
+
 });
 
 
@@ -581,52 +588,29 @@ var authuser = $('.AuthUser').val();
 $('#myTab a:last').hide();
 $('#myTab a[name="test"]').hide();
 if ($('.AuthUser').is(':empty')){
-$('#usernametxt,#passwordtxt,#passwordtxt,#registerbutton').show();
+$('#lgnbtn,#regbtn').show();
 $('#logoutbutton').hide();
 }else{
-$('#usernametxt,#passwordtxt,#loginbutton,#registerbutton').hide();
+$('#lgnbtn,#regbtn').hide();
 $('#logoutbutton').show();
 $('#myTab a:last').show();
 $('#myTab a[name="test"]').show();
 }
 
-var current = "<?php echo $length; ?>";
+$("a#modalmore").click(function(){
+  $("#infobody").empty();
+  $(".my-modal-title").empty();
+  $id = $(this).attr("name");
+  $.getJSON('info.json', function(data) {
+    console.log('JSON data received:', data);
+    $.each(data.features,function(i,feature){
+      if(feature.name == $id){
+      $(".my-modal-title").append(feature.title);
+      $("#infobody").append(feature.text);
+}
+});
+});
 
-$(function () {
-    $('#graph').highcharts({
-        title: {
-            text: 'Your results',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Previous test attempts',
-            x: -20
-        },
-        xAxis: {
-            categories: ['Test1', 'Test2', 'Test3', 'Test4', 'Test5', 'Test6',
-                'Test7', 'Test8', 'Test9', 'Test10']
-        },
-        yAxis: {
-            title: {
-                text: 'Result'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Result',
-            data: [current, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 100]
-        }] 
-    });
 });
 
 });

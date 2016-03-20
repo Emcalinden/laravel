@@ -1,15 +1,16 @@
 body {
-    background-color: #A27AFE;
-    font-family: 'Alegreya', serif;
+    background-color: rgba(156, 152, 193, 0.36);
+   font-family: 'Open Sans', sans-serif;
     cursor: pointer;
     font-size: 160%;
+    min-height: 100vh;
 }
 .jumbotron {
     font-family: 'eraser', sans-serif;
-    background-image: url(toh.jpg);
+    background-image: url(toh3.svg.png);
     background-size: 100% 100%;
     height: auto;
-    color: purple;
+    color: #2e4174;
     text-align: center;
 }
 p.title {
@@ -17,20 +18,26 @@ p.title {
 }
 .question{
     border: 1px solid #aaa;
-background-color: white;
+    background-color: white;
     margin-bottom: 10px;
 }
-#resultsTable{
+#resultsTable, #resultsTable td,#resultsTable th{
+
     margin:0 auto;
     border: 1px solid #aaa;
-    background-color: #A27AFE;
+    background-color: rgba(156, 152, 193, 0.36);
     margin-top: 20px;
     margin-bottom: 20px;
     width:40%;
-    color:white;
+    color:black;
     text-align: center;
 
 }
+ #resultsTable th{
+        background-color: pink;
+        tex
+
+ }
 input[type=radio]{
   width   : 28px;
   margin  : 0;
@@ -101,18 +108,31 @@ input[type=radio]{
 #tohfull {
     margin: 0 auto;
     height: auto;
-    width: 80%;
+    min-height: 500px;
+    width: 100%;
     margin-top: 20px;
-    background-color: rgba(156, 152, 193, 0.36);
     text-align: center;
-    color: blue;
+    color: black;
+    position: relative;
 }
+#MathInduction{
+    width:100%;
+}
+.carousel{
+    height:450px;
+    width:100%;
+    margin-bottom: 50px;
+}
+
 #recurrenceproof {
     width: 45%;
 }
 .proofcolumns {
     float: left;
     background-color: grey;
+}
+.carousel-inner{
+    height:90%;
 }
 .tabs2 {
     margin-left: ;
@@ -123,14 +143,7 @@ input[type=radio]{
 .hidden {
     display: none;
 }
-#Examples .tabs2 li a {
-    border-color: #75ECFD;
-    background-color: grey;
-}
-#Examples .tabs3 li a {
-    border-color: #75ECFD;
-    background-color: white;
-}
+
 #pattern {
     margin: 0 auto;
 }
@@ -192,12 +205,17 @@ input[type=radio]{
     padding-top: 50px;
     width: 80%;
     margin: 0 auto;
+    height:auto;
 }
 #hortable td {
     width: auto;
 }
 #closedForm {} .container {
     width: 80%;
+
+}
+#closedFormGuess{
+    margin-top: 50px;
 }
 #closedFormArea {
     width: 100%;
@@ -206,9 +224,7 @@ input[type=radio]{
 .form-control {
     border: 5px solid #A27AFE;
 }
-#loginbutton {
-    background-color: white;
-}
+
 #registerbutton {
     background-color: white;
     font-size: 1.5em;
@@ -218,35 +234,28 @@ input[type=radio]{
     padding-top: 0px;
     margin-top: 0px;
 }
-#myTab li a {
-    border-color: #75ECFD;
-    background-color: #D698FE;
+.footer {
+  clear:both;
+  padding-top:20px;
+    height:50px;
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+   position:static;
+   bottom:0;
+   width:100%;
 }
 #image{
     background-image:url(smiley.jpg);
 margin:0 auto;
-
 }
 
 #myTab li.active a {
-    border-bottom-color: transparent;
-    background-color: #A095EE;
+   background-color: rgba(0, 0, 50, 0.5); 
+   color:white;
 }
-#logInForm {
-    margin-top: 50px;
-    display: block;
-    background-color: #D0BCFE;
-}
-#logInForm label {
-    display: inline-block;
-    width: 100px;
-}
-#logInForm #inputdiv,
-#inputdiv #password {
-    display: inline-block;
-}
+
 input {
-    border: 5px solid #A27AFE;
+    border: 5px solid #2e4174;
     -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
@@ -285,17 +294,13 @@ input {
     background-color: white;
     color: black;
 }
+#authArea{
+float:right;
+}
 #Difference2 .arrow {
     color: red;
 }
-button {
-    width: auto;
-    background: #86BCFF;
-    color: black;
-    height: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+
 #proofMessage {
     color: green;
 }
@@ -317,6 +322,8 @@ table.recurrenceTable {
     width: 100%;
     text-align: center;
     margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 80px;
 }
 table.recurrenceTable td {
     width: 50px;
@@ -328,9 +335,10 @@ table.inductionTable tr {
 #error {
     color: red;
 }
+
 #step1,
 #trueorFalse {
-    width: 200px;
+    width: 180px;
     color: blue;
     margin-top: 50px;
     height: ;
@@ -360,7 +368,7 @@ table.inductionTable td {
 .sequenceval,
 .guess,
 #term,.linguess {
-    border: 5px solid #A27AFE;
+    border: 5px solid #2e4174;
     -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
@@ -379,14 +387,18 @@ td {
 .container {
     background-color: white;
 }
+.navbar{
+    width:100%;
+    margin-bottom: 0px;
+}
 .nav-tabs {
     background-color: white;
     color: white;
     font-size: 150%;
 }
 .modal-body {
-    background-image: url(toh.jpg);
-    color: blue;
+
+    color: black;
     background-size: cover;
 }
 #inputdiv #password {
@@ -404,11 +416,7 @@ td {
 .modal-body .form-horizontal .col-sm-offset-2 {
     margin-left: 15px;
 }
-#usernametxt,
-#passwordtxt {
-    width: 30%;
-    margin: 0 auto;
-}
+
 .form-group {
     width: 50%;
     margin: 0 auto;

@@ -28,7 +28,7 @@ class WelcomeController extends Controller
         $title = 'Algorithmaths';
     
         //$questions = Question::all();
-        $question_id = Question::get()->lists('question_id');
+        //$question_id = Question::get()->lists('question_id');
 
         $questions = Question::with('answer')->get();
         //dd($questions); 
@@ -40,15 +40,24 @@ class WelcomeController extends Controller
         and proof by mathematical induction as a non-registered user although
         if you decide to register you can test yourself on the subject from a beginner
         level right up to a more difficult level. ';
-        if(Auth::check()){
-        $userResult = User::with('result')->where('id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        //dd($userResult);
-        return View::make('pages.index',compact('title', 'text','questions','answers','question_id','userResult'));
-
-         }
-
-        return View::make('pages.index',compact('title', 'text','questions','answers','question_id'));
+        $dataArray=[];
+        $labelArray=[];
+        if(Auth::user()){
+        $userResult = User::with('result')->where('id',Auth::user()->id)->get();
+        foreach($userResult as $res){
+        foreach($res->result as $all){
+        // dd($res->result-?firstname);
+        $dataArray[] = (int)$all->result;
+        $labelArray[] = $all->result_id;
+        }
     }
+    return View::make('pages.index',compact('title', 'text','questions','answers','userResult','dataArray','labelArray'));
+    }
+    else
+    {
+    return View::make('pages.index',compact('title', 'text','questions','answers'));
+    }
+}
      public function show ($id) {
       $question = Question::with('answer')->where('question_id','=',$id)->first();
       return view('index',compact('question'));
@@ -84,7 +93,7 @@ class WelcomeController extends Controller
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $user = new User;
+            $user = new User;  
             $user->first_name       = Input::get('first_name');
             $user->last_name        = Input::get('last_name');
             $user->username           = Input::get('username');
