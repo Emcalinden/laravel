@@ -1,10 +1,10 @@
 $(document).ready(function(){
  //hiding all the divs apart from home as it needs to be displayed on initial viewing
-$("#Examples, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#tohInduction,#tohclosed,#quadfull,#linmi,#quadmi").hide();
+$("#Examples,#SecondOrder, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#tohInduction,#tohclosed,#quadfull,#linmi,#quadmi").hide();
 //on the click of a tab
 $(".nav li a").click(function(evt){
 //hiding all the divs including home once this button is clicked as a new one will appear when another tab is clicked.
-$("#Home, #Examples, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#quadrec,#tohrecurrence,#tohInduction,#fullLinear,#tohclosed,#tohfull,#linearfull,#quadfull,#linrec,#linmi,#quadmi").hide();
+$("#Home,#SecondOrder, #Examples, #Recurrence,#MathInduction, #Test, #Review,#quadratic,#quadrec,#tohrecurrence,#tohInduction,#fullLinear,#tohclosed,#tohfull,#linearfull,#quadfull,#linrec,#linmi,#quadmi").hide();
 //link clicked becomes the text of the tab
 linkclicked = $(this).text();
 		  //Switch on the text value passed in, which will determin its outcome using a case
@@ -25,6 +25,9 @@ linkclicked = $(this).text();
 			$("#recurrencearea").show();
 			move("#recTable");
 			break;		
+      case "Second-Order Linear Homogeneous Recurrence Relations":
+    $("#SecondOrder").show();
+      break;
             case "Test Yourself":
             $("#Test").show();
             break;

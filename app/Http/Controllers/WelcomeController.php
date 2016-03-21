@@ -15,7 +15,7 @@ use Algorithmaths\User;
 use Algorithmaths\Question;
 use Algorithmaths\Answer;
 use Algorithmaths\Result;
-
+use Algorithmaths\Feedback;
 use Illuminate\Support\Facades\Input;
 use Hash;
 
@@ -30,11 +30,11 @@ class WelcomeController extends Controller
         //$questions = Question::all();
         //$question_id = Question::get()->lists('question_id');
 
-        $questions = Question::with('answer')->get();
+        $questions = Question::limit(10)->with('answer')->get();
         //dd($questions); 
          //return collect($array)->unique('id')->all();
         $answers = Answer::with('question')->first()->get();
-
+        $feedback = Feedback::limit(5)->get();
         $text = 'This site aims to guide you in learning recurrence relations
         and proof by mathematical induction. You can learn the recurrence relations 
         and proof by mathematical induction as a non-registered user although
@@ -42,16 +42,17 @@ class WelcomeController extends Controller
         level right up to a more difficult level. ';
         $dataArray=[];
         $labelArray=[];
-        if(Auth::user()){
+        if(Auth::check()){
         $userResult = User::with('result')->where('id',Auth::user()->id)->get();
         foreach($userResult as $res){
         foreach($res->result as $all){
         // dd($res->result-?firstname);
         $dataArray[] = (int)$all->result;
         $labelArray[] = $all->result_id;
+
         }
     }
-    return View::make('pages.index',compact('title', 'text','questions','answers','userResult','dataArray','labelArray'));
+    return View::make('pages.index',compact('title','text','questions','answers','userResult','dataArray','labelArray','feedback'));
     }
     else
     {
@@ -116,8 +117,7 @@ class WelcomeController extends Controller
     }
 	
 
-
-
+    
     /**
      * Show the form for editing the specified resource.
      *

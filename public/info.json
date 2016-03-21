@@ -8,16 +8,16 @@
 		"id": "2",
 		"title":"Interactive Area",
 		"name": "interactive",
-		"text": "More text about the interactive Area"
+		"text": "The Interactive area is a feature to help you on a step by step basis. Letting you enter your own recurrence relation and taking you through the problem. There are hints throughout if you get stuck, but the aim is that you attempt to work out the problem yourself and enter your values to the website to see if you have got it correct. Once you have finished the recurrence relation you will get to see how to solve it by mathematical Induction."
 	}, {
 		"id": "3",
 		"title":"Test Area",
 		"name": "test",
-		"text": "More text about the Test area"
+		"text": "Test yourself is a feature allowing you to test your skills, so signing up to the website means your scores can be saved and reviewed. By doing this you can see your own level of knowledge on the subject."
 	}, {
 		"id": "4",
 		"title":"Review Area",
 		"name": "review",
-		"text": "More text about the review Area"
+		"text": "Once you have carried out a test, your score will be saved and you can see it in the review area. The review are will have a table of all your previous scores and you will see it displayed on a graph. This will let you know if you are making progress. It is good to keep track of progress, and try to beat your scores. This will help you in preparation for any assignments or exams covering these topics."
 	}]
 }

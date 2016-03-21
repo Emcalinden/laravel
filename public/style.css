@@ -1,9 +1,11 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
 body {
     background-color: rgba(156, 152, 193, 0.36);
    font-family: 'Open Sans', sans-serif;
     cursor: pointer;
-    font-size: 160%;
+    font-size: 2em;
     min-height: 100vh;
+     text-align: justify;
 }
 .jumbotron {
     font-family: 'eraser', sans-serif;
@@ -13,8 +15,21 @@ body {
     color: #2e4174;
     text-align: center;
 }
-p.title {
-    font-size: 500%;
+.jumbotron.h1{
+    font-size: 80px;
+}
+.col-md-4{
+    width:auto;
+}
+.nav-tabs{
+    bottom:0;
+    text-align: center;
+}
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
 }
 .question{
     border: 1px solid #aaa;
@@ -35,7 +50,7 @@ p.title {
 }
  #resultsTable th{
         background-color: pink;
-        tex
+    
 
  }
 input[type=radio]{
@@ -76,6 +91,7 @@ input[type=radio]{
 }
 #Home,
 #Examples,
+#SecondOrder,
 #Recurrence,
 #MathInduction,
 #Test,
@@ -101,6 +117,7 @@ input[type=radio]{
 }
 #testarea,
 #Home,
+#SecondOrder,
 #Recurrence,
 #MathInduction,
 #quadfull,
@@ -114,6 +131,10 @@ input[type=radio]{
     text-align: center;
     color: black;
     position: relative;
+}
+.justify{
+        text-align: justify;
+
 }
 #MathInduction{
     width:100%;
@@ -221,9 +242,20 @@ input[type=radio]{
     width: 100%;
     top: 0;
 }
-.form-control {
-    border: 5px solid #A27AFE;
+#password{
+width:100%;
+    border-radius: 4px;
+        border: 1px solid #ccc;
+    color: #555;
+
+display: block;
+
 }
+#modalfeedback{
+    margin:0 auto;
+}
+
+
 
 #registerbutton {
     background-color: white;
@@ -233,10 +265,15 @@ input[type=radio]{
     font-size: 1em;
     padding-top: 0px;
     margin-top: 0px;
+
+}
+#feedback{
+    height:200px;
 }
 .footer {
-  clear:both;
-  padding-top:20px;
+  text-align: center;
+  font-size: 2em;
+   margin:0 auto;
     height:50px;
     background-color: #f8f8f8;
     border-color: #e7e7e7;
@@ -253,16 +290,10 @@ margin:0 auto;
    background-color: rgba(0, 0, 50, 0.5); 
    color:white;
 }
-
-input {
-    border: 5px solid #2e4174;
-    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.0);
-    margin: 0 0 10px 0;
+#myTab li a{
+  color:#2e4174;
 }
+
 #buttonsarea {
     height: auto;
     width: 400px;
@@ -270,6 +301,9 @@ input {
 }
 .col-md-4 {
     width: 360px;
+}
+#hometext{
+    width:450px;
 }
 .arrow {
     font-size: ;
@@ -297,6 +331,16 @@ input {
 #authArea{
 float:right;
 }
+.AuthUser{
+    color: #2e4174;
+    display:inline-block;
+    margin-left: 6px;
+}
+h2{
+        display:inline-block;
+        color: #2e4174;
+
+}
 #Difference2 .arrow {
     color: red;
 }
@@ -307,6 +351,10 @@ float:right;
 #recTable {
     margin: 0 auto;
     margin-bottom: 50px;
+    width:100%;
+}
+label{
+    width:auto;
 }
 #rec1,
 #rec2,
@@ -401,11 +449,7 @@ td {
     color: black;
     background-size: cover;
 }
-#inputdiv #password {
-    width: 100%;
-    background-color: white;
-    height: 34px
-}
+
 .modal-body .form-horizontal .col-sm-2,
 .modal-body .form-horizontal .col-sm-10 {
     width: 100%;
@@ -418,7 +462,7 @@ td {
 }
 
 .form-group {
-    width: 50%;
+
     margin: 0 auto;
 }
 #logo {
@@ -434,11 +478,7 @@ td {
 #diffex {
     padding-left: 25px;
 }
-#username,
-#password {
-    bottom: 2;
-    color: black;
-}
+
 .nav-tabs li a {
     color: black;
 }

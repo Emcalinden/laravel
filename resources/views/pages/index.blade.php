@@ -35,27 +35,24 @@
 <button id = "regbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#myModalNorm">Register</button>
 <a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout</a>
 </div>
-
   </div><!-- /.container-fluid -->
 </nav>
 <div class = 'container'>
-<section class = 'jumbotron'>
-
-<p class = "title">{!! $title !!}</p>
-
-
-</section>
+<header class = 'jumbotron'>
+<h1 class = "h1"> {!! $title !!}</h1>
+</header>
 <section class = 'nav'>
 <ul class="nav nav-tabs" id="myTab">
-			  <li class="active"><a data-target="#home" data-toggle="tab"><b>Home</b></a></li>
-			  <li><a data-target="#notation" data-toggle="tab"><b>Examples</b></a></li>
-			  <li><a data-target="#recurrence" data-toggle="tab"><b>Interactive Area</b></a></li>
-			  <li><a data-target="#test" data-toggle="tab" name = "test"><b>Test Yourself</b></a></li>
-			  <li><a data-target="#review" data-toggle="tab"><b>Review </b></a></li>
+        <li class="active"><a data-target="#home" data-toggle="tab"><b>Home</b></a></li>
+        <li><a data-target="#notation" data-toggle="tab"><b>Examples</b></a></li>
+        <li><a data-target="#recurrence" data-toggle="tab"><b>Interactive Area</b></a></li>
+        <li><a data-target="#recurrence" data-toggle="tab"><b>Second-Order Linear Homogeneous Recurrence Relations</b></a></li>
+        <li><a data-target="#test" data-toggle="tab" name = "test"><b>Test Yourself</b></a></li>
+        <li><a data-target="#review" data-toggle="tab"><b>Review </b></a></li>
 </ul>
-
-
 </section>
+
+
 <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -75,9 +72,9 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'sessions.store']) !!}
 <div class = "form-group">
-<div id ="inputdiv">{!!Form::text('username','',array('id'=>'usernametxt','class'=>'form-control span6','placeholder' => 'Please Enter your Username')) !!}</div>
+{!!Form::text('username','',array('id'=>'usernametxt','class'=>'form-control span6','placeholder' => 'Please Enter your Username')) !!}
 <p class="errors">{{$errors->first('username')}}</p>
-<div id ="inputdiv">{!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}</div>
+{!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}
 <p class="errors">{{$errors->first('password')}}</p>
 </div>
 </div>           <!-- Modal Footer -->
@@ -120,10 +117,10 @@
                 
                 {!! Form::open(['route' => 'register']) !!}
 <div class = "form-group">
-	<div id ="inputdiv">{!! Form::label('firstname','Firstname: ') !!}{!! Form::text('first_name',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('lastname', 'Lastname: ') !!}{!! Form::text('last_name',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('username','Username: ') !!}{!! Form::text('username',"",['class' => 'form-control']) !!}</div>
-	<div id ="inputdiv">{!! Form::label('password', 'Password: ') !!}{!! Form::password('password',"",['class' => 'form-control']) !!}</div>
+{!! Form::label('firstname','Firstname: ') !!}{!! Form::text('first_name',"",['class' => 'form-control']) !!}
+{!! Form::label('lastname', 'Lastname: ') !!}{!! Form::text('last_name',"",['class' => 'form-control']) !!}
+{!! Form::label('username','Username: ') !!}{!! Form::text('username',"",['class' => 'form-control']) !!}
+{!! Form::label('password', 'Password: ') !!}{!! Form::password('password',"",['class' => 'form-control']) !!}
 
 </div>
 </div>
@@ -147,8 +144,8 @@
 <!-- Post Info -->
 <div id = "Home">
 
-<h3>Welcome to Algorithmaths<h3 class = "AuthUser">@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h3></h3>
-<p>{!! $text !!}</p>
+<h2>Welcome to Algorithmaths</h2><h2 class = "AuthUser">@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h2>
+<p class = 'justify'>{!! $text !!}</p>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
@@ -174,8 +171,8 @@
         </div> <a class="left carousel-control" href="#carousel-462084" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-462084" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
     </div>
-    <div class="col-md-4">
-      <p>
+    <div class="col-md-4" id = 'hometext'>
+      <p class = 'justify'>
         As a non-registered user of Algorithmaths you get to see some examples of Recurrence Relations and Proof by Mathematical Induction. You also get to use the websites Interactive area, allowing you to enter recurrence relations and working your way through the problem. If you want to boost your skills or exam results, register to the website and you will have access to the test. 
       Your scores get saved for you each time and you can come back to review them by clicking on the Review tab once you have logged in. 
     </div>
@@ -184,9 +181,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h3>
+      <h2>
         Features
-      </h3>
+      </h2>
       <div class="row">
         <div class="col-md-6">
           <h2>
@@ -222,8 +219,7 @@
           <h2>
             Interactive Area
           </h2>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          <p>The Interactive area allows you to work through your own Recurrence Relation, please try it out!
           </p>
           <p>
             <a id="modalmore" href="#modal-container"name = 'interactive' role="button" class="btn" data-toggle="modal">Read More</a>
@@ -233,8 +229,8 @@
           <h2>
             Test
           </h2>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          <p> If you register to the site you can test your abilities. Try to beat your own score each time.
+
           </p>
           <p>
             <a id="modalmore" href="#modal-container"name = 'test' role="button" class="btn" data-toggle="modal">Read More</a>
@@ -242,8 +238,7 @@
           <h2>
             Review
           </h2>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          <p>The Review area has all your test results for you to see. Keep reviewing your progress as a basis for improvement.
           </p>
           <p>
             <a id="modalmore" href="#modal-container"name = 'review' role="button" class="btn" data-toggle="modal">Read More</a>
@@ -252,6 +247,14 @@
       </div>
     </div>
   </div>
+  @if($feedback !== '')
+<h2>Recent Feedback</h2>
+  @foreach($feedback as $feed)
+<p>{{$feed->user->username}} - {{$feed->review}}</p>
+  @endforeach
+@endif
+
+
 </div>
 </div>
 <div id = "Examples">
@@ -549,6 +552,59 @@
 
 </div>
 </div>
+<div id = "secondOrder">
+<div id = 'recurrencearea'>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+    <br />
+    <p>Enter in any numbers to the recurrence relation, and enter your initial term.</p>
+    <p>When you click submit, text boxes will appear for you to enter in the sequence terms yourself. </p>
+    <p>If you struggle, hover over the question mark for a hint.</p>
+    </div>
+    <div class="col-md-6">
+    <br />
+<table id ='recTable'>
+  <tr>
+    <td>
+  <label>U(n) = </label></td>
+    <td><input type = "text" id = "homfirstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
+  <td><label>U(n-1) +</label></td>
+  <td><input type = "text" id = "homsecondnumber" class ="numberInput"></input></td>
+  <td><label>U(n-2) +</label></td>
+  <td><input type = "text" id = "homthirdnumber" class ="numberInput"></input></td>
+  </tr>
+  <tr>
+    <td><label>U(1) =</label></td>
+    <td><input type = "text" id = "hominitialnumber" class ="numberInput"></input></td> 
+  <td><span id="errmsg"></span></td>
+  <td id = 'buttons'></td>
+  <td></td>
+  </tr>
+  <tr>
+   <td><label>U(2) =</label></td>
+    <td><input type = "text" id = "hominitialnumber2" class ="numberInput"></input></td> 
+  <td></td>
+  <td></td>
+  <td></td>
+  </tr>
+ <tr>
+    <td></td>
+    <td></td> 
+  <td> <button id = "recsubmit">Submit</button></td>
+  <td></td>
+  <td></td>
+  </tr>
+</table>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
+<table id = 'hortable'>
+<tr id = 'vertseq'></tr>
+</table>
+</div>
 <div id = "Recurrence">
 <div id = 'recurrencearea'>
 Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
@@ -592,11 +648,10 @@ will be asked to enter the sequence once you submit.
 </table>
     </div>
     <div class="col-md-4">
+
     </div>
   </div>
 </div>
-
-
 <table id = 'hortable'>
 <tr id = 'vertseq'></tr>
 </table>
@@ -638,8 +693,7 @@ will be asked to enter the sequence once you submit.
 @foreach ($questions as $question)
 <div class="question">
     <p>{{$question->question}}</p>
-
-    @foreach ($question->answer as $answer)    
+    @foreach ($question->answer->shuffle() as $answer) 
         <p><input type="radio" name={{ substr($question->question, 0, 10) }} value={{$answer->correct_answer}} required>{{$answer->answer}}</input></p>
     @endforeach
 </div>
@@ -685,7 +739,7 @@ var lineChartData = {
             "pointColor": "rgba(220,220,220,1)",
             "strokeColor": "pink"
     }],
-        "labels": {{json_encode($labelArray)}}
+        "labels":{{json_encode($labelArray)}}
 };
 
 var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
@@ -698,9 +752,51 @@ var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(
 
 
 
-<footer class = 'footer'> Footer</footer>
+
+</div>
+
+
+<div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span id = "closeicon" aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Feedback
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                {!! Form::open(['route' => 'feedback']) !!}
+<div class = "form-group">
+  {!! Form::label('feedback','Feedback: ') !!}{!! Form::text('feedback',"",['class' => 'form-control']) !!}
+</div>
+</div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+
+        <div class = "form-group">
+        <td id = "buttons">
+        {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+<br />
+        {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
+        </td>
+{!! Form::close() !!}
+        </div>
+        
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
-
+<footer class = 'footer'><a id="modalfeedback" href="#modal-container" role="button" class="btn" data-toggle="modal" data-target="#feedbackmodal"><b>Leave FeedBack</b></a>
+</footer>
 </html>

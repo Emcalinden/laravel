@@ -31,6 +31,11 @@ class User extends Model implements Authenticatable
 {
     return $this->remember_token;
 }
+
+public function feedback() {
+        return $this->hasMany('Algorithmaths\Feedback');
+    }
+
 public function getId()
 {
   return $this->id;
