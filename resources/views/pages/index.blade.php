@@ -46,7 +46,6 @@
         <li class="active"><a data-target="#home" data-toggle="tab"><b>Home</b></a></li>
         <li><a data-target="#notation" data-toggle="tab"><b>Examples</b></a></li>
         <li><a data-target="#recurrence" data-toggle="tab"><b>Interactive Area</b></a></li>
-        <li><a data-target="#recurrence" data-toggle="tab"><b>Second-Order Linear Homogeneous Recurrence Relations</b></a></li>
         <li><a data-target="#test" data-toggle="tab" name = "test"><b>Test Yourself</b></a></li>
         <li><a data-target="#review" data-toggle="tab"><b>Review </b></a></li>
 </ul>
@@ -82,9 +81,9 @@
 
         <div class = "form-group">
         <td id = "buttons">
-        {!! Form::submit('Login', array('id'=>'loginbutton','class'=>'btn btn-primary form-control')) !!}
+        {!! Form::submit('Login', array('id'=>'loginbutton','class'=>'btn btn-secondary form-control')) !!}
 <br />
-        {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
         </td>
 {!! Form::close() !!}
         </div>
@@ -130,9 +129,9 @@
 
 				<div class = "form-group">
         <td id = "buttons">
-				{!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Create', ['class' => 'btn btn-secondary form-control']) !!}
 <br />
-			  {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
+			  {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
         </td>
 {!! Form::close() !!}
 				</div>
@@ -247,13 +246,14 @@
       </div>
     </div>
   </div>
+  @if (Auth::user())
   @if($feedback !== '')
 <h2>Recent Feedback</h2>
   @foreach($feedback as $feed)
 <p>{{$feed->user->username}} - {{$feed->review}}</p>
   @endforeach
 @endif
-
+@endif
 
 </div>
 </div>
@@ -552,59 +552,7 @@
 
 </div>
 </div>
-<div id = "secondOrder">
-<div id = 'recurrencearea'>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-    <br />
-    <p>Enter in any numbers to the recurrence relation, and enter your initial term.</p>
-    <p>When you click submit, text boxes will appear for you to enter in the sequence terms yourself. </p>
-    <p>If you struggle, hover over the question mark for a hint.</p>
-    </div>
-    <div class="col-md-6">
-    <br />
-<table id ='recTable'>
-  <tr>
-    <td>
-  <label>U(n) = </label></td>
-    <td><input type = "text" id = "homfirstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
-  <td><label>U(n-1) +</label></td>
-  <td><input type = "text" id = "homsecondnumber" class ="numberInput"></input></td>
-  <td><label>U(n-2) +</label></td>
-  <td><input type = "text" id = "homthirdnumber" class ="numberInput"></input></td>
-  </tr>
-  <tr>
-    <td><label>U(1) =</label></td>
-    <td><input type = "text" id = "hominitialnumber" class ="numberInput"></input></td> 
-  <td><span id="errmsg"></span></td>
-  <td id = 'buttons'></td>
-  <td></td>
-  </tr>
-  <tr>
-   <td><label>U(2) =</label></td>
-    <td><input type = "text" id = "hominitialnumber2" class ="numberInput"></input></td> 
-  <td></td>
-  <td></td>
-  <td></td>
-  </tr>
- <tr>
-    <td></td>
-    <td></td> 
-  <td> <button id = "recsubmit">Submit</button></td>
-  <td></td>
-  <td></td>
-  </tr>
-</table>
-    </div>
-    <div class="col-md-2">
-    </div>
-  </div>
-</div>
-<table id = 'hortable'>
-<tr id = 'vertseq'></tr>
-</table>
-</div>
+
 <div id = "Recurrence">
 <div id = 'recurrencearea'>
 Enter values into the quadratic recurrence relation below. Attempt working out the sequence by yourself first before continuing as you 
@@ -647,7 +595,7 @@ will be asked to enter the sequence once you submit.
   </tr>
 </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
 
     </div>
   </div>
@@ -784,9 +732,9 @@ var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(
 
         <div class = "form-group">
         <td id = "buttons">
-        {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Submit', ['class' => 'btn btn-secondary form-control']) !!}
 <br />
-        {!! Form::submit('Close', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
         </td>
 {!! Form::close() !!}
         </div>

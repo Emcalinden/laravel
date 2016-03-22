@@ -148,7 +148,13 @@ $firstnumber = null;
 $secondnumber = null; 
 $thirdnumber = null;
 $initialnumber = null;
+$hominitialnumber = null;
+$homfirstnumber = null;
+$homsecondnumber = null;
+$homthirdnumber = null;
+$hominitialnumber2 = null;
 $answers.length = 0;
+
 
 $( '#vertseq' ).on( 'keyup', '.sequenceval', function () { 
 
@@ -195,6 +201,8 @@ $("#hint").hide();
 $('#recsubmit').click(function(){
 	count = 0;
 	$numbers.length = 0;
+  $closedformAnswers = [];
+$linclosedformAnswers = [];
 	$answers.length =0;
 	$("#buttons").empty();
 $n =  parseInt($('#initialnumber').val(), 10);
@@ -242,11 +250,12 @@ $(".recurrenceTable").show();
 }
 $("#buttons #clear").click(function(){
 	$("#hint").hide();
-$answers.length = 0;
+$answers = [];
 $("#clear").hide();
-$numbers.length = 0;
-$closedformAnswers.length = 0;
-$linclosedformAnswers.length = 0;
+$numbers=[];
+$userinput=[];
+$closedformAnswers = [];
+$linclosedformAnswers = [];
 $("#closedHelp").hide();
 $(".recurrenceTable .result").empty();
 $(".recurrenceTable #closedFormArea").empty();
@@ -256,9 +265,7 @@ $("#secondnumber").val("");
 $("#thirdnumber").val("");
 $("#vertseq").empty();
 $("#proof").hide();
-//$(".recurrenceTable").children().hide();
-//$(".result").empty();
-//$(".result").hide();
+
 });
 });
 
@@ -310,7 +317,7 @@ b = a - $n;
 $("#closedForm").one('click',function(){
 $("#closedFormArea #closedFormGuess").empty();
 $("#closedHelp").show();
-$("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='text' id = "+a+" data-toggle='tooltip' class ='linguess' title = 'A = The difference'/>n +<input type ='text' id = "+b+" data-toggle='tooltip' class ='linguess' title = 'B = (First difference ("+initialDifference+" ) - (3*A))'/></div>"); 
+$("#closedFormArea").append("<div id ='closedFormGuess'>Tn = "+"<input type ='text' id ='"+a+"'data-toggle='tooltip' class ='linguess' title = 'A = The difference'/>n +<input type ='text' id = '"+b+"'' data-toggle='tooltip' class ='linguess' title = 'B = (First difference ("+initialDifference+" ) - (3*A))'/></div>"); 
  move(".linguess");
 });
 
@@ -327,10 +334,12 @@ if (value == aID){// 5 seconds
 $(this).css('border', '3px solid green'); 
 $(this).prop("readonly", true);
 $linclosedformAnswers.push(value);
-if($(".linguess:nth-child(2)")=="" &&$(".linguess:nth-child(1)")!=""){
-  $linclosedformAnswers.length==1;
+if($("#"+b).val().length === 0  && $linclosedformAnswers.length==2){
+  $linclosedformAnswers.splice(-1,1);
+  //arr
+
 }
-if($linclosedformAnswers.length ==2){
+if($linclosedformAnswers.length >=2){
   $('#checkAny').empty();
 $( '#closedFormArea' ).append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
 move("#checkAny");
@@ -484,7 +493,7 @@ $("#MathInduction").show();
 }
 
 });
-}else if($linclosedformAnswers.length ==2){
+}else if($linclosedformAnswers.length >=2){
 
 var userinput = $(this).val();
 var firstterm = userinput*a;
@@ -543,7 +552,7 @@ $("#step3Eq").append("       = "+$a+"k  "+operator +b+ " + " + $thirdnumber +" <
 var simplified1 = b+$thirdnumber;
 
 $("#step3Eq").append("       ="+$a +"k + " +simplified1 +"<br /><br /><br /><br />");
-var simplified4 = $a*1;
+var simplified4 = a*1;
 $("#step3Eq").append("    T(k+1) = "+ $a +"(k + 1) "+operator + b +" <br /><br />");
 $("#step3Eq").append("     = "+ $a + "k + "+simplified4 +" "+operator+b+" <br /><br />");
 var simplified5 = simplified4+b;
