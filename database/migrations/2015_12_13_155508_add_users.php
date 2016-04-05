@@ -16,15 +16,15 @@ class AddUsers extends Migration
 		'first_name' => 'Emma',
 		'last_name' => 'McAlinden',
 		'username' => 'emcalinden',
-		'password' => 'pa$$word',
+		'password' => Hash::make('emmaPass'),
 		'created_at' => date('Y-m-d H:m:s'),
 		'updated_at' => date('Y-m-d H:m:s')
 		));
 		DB::table('user')->insert(array(
-		'first_name' => 'Glenn',
-		'last_name' => 'Hawe',
-		'username' => 'ghawe',
-		'password' => 'supervisor',
+		'first_name' => 'Jimmy',
+		'last_name' => 'John',
+		'username' => 'JJohn',
+		'password' => Hash::make('JimmyPass'),
 		'created_at' => date('Y-m-d H:m:s'),
 		'updated_at' => date('Y-m-d H:m:s')
 		));

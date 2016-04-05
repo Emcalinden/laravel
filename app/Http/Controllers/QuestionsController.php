@@ -18,43 +18,32 @@ use Illuminate\Support\Facades\Input;
 
 
 class QuestionsController extends Controller
-{   
-
- public function index () {
-     //$question = Question::latest()->get();
-     //return view('pages.index',compact('question'));
-
-//Redirect::to('index')->with('userResult',$userResult);
-
- }
+{ 
     
 
-  public function show ($id) {
-      $question = Question::with('answer')->where('id','=',$id)->first();
-      return view('pages.index',compact('question'));
-  } 
+  public function show() {
+    $questions = Question::limit(10)->with('answer')->get();
+    Session::put('key', $questions);
+    return Redirect::to('pages.index')->with(compact('questions'));
+  }  
 
   public function store(Request $request)
     {
-$length;
-foreach($_POST as $key => $val){
-    if(substr($key, 0, 8) == 'question'){
-        $array[] = $val;
-$length  = count( array_keys( $array, 1 ));
-    }
+      Session::forget('key');
+      $length;
+      foreach($_POST as $key => $val){
+        if(substr($key, 0, 8) == 'question'){
+          $array[] = $val;
+          $length  = count( array_keys( $array, 1 ));
+        }
+      }
+      $result = new Result;
+      $result -> user_id = Auth::user()->id;
+      $result -> result = $length;
+      $result -> save();
+      return Redirect::to('index')->with('success', true)->with(compact('length','data'));
 }
-    $result = new Result;
-    $result -> user_id = Auth::user()->id;
-    $result -> result = $length;
-    $result -> save();
-
-    return Redirect::to('index')->with('success', true)->with('length',$length);
-
-       //return Redirect::to('index')->with('success', true)->with('length',$length);
-}
-
-
-
+  
     
 
 }

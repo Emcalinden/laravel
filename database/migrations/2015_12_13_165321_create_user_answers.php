@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewTable extends Migration
+class CreateUserAnswers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,21 @@ class CreateReviewTable extends Migration
      */
     public function up()
     {
-    Schema::create('review', function($table) {
-    $table-> increments('review_id');
+     Schema::create('user_answer', function($table) {
+    $table-> increments('user_answer_id');
     $table->integer('user_id')->unsigned();
-    $table-> string('review');
+    $table->integer('answer_id')->unsigned();
     $table->timestamps();
     });
-     Schema::table('review', function($table) {
+     Schema::table('user_answer', function($table) {
      $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+     $table->foreign('answer_id')->references('answer_id')->on('answer')->onDelete('cascade');
+
     });
     }
+
+
+
 
     /**
      * Reverse the migrations.

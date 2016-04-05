@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
 <meta name="env" content="{{ App::environment() }}">
 <meta name="token" content="{{ Session::token() }}">
@@ -7,14 +8,10 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="style.css"></head>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script src="jquery.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-
 
 <body>
 <div id="wrapper">
@@ -31,16 +28,28 @@
       <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-pencil"></i><b>Algorithmaths</b></a>
     </div>
     <div id = 'authArea'>
-<button id = "lgnbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#loginmodal">Log In</button>
-<button id = "regbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#myModalNorm">Register</button>
-<a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout</a>
+<button id = "lgnbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#loginmodal"><a name ='loglink'>Log In</a></button>
+<button id = "regbtn"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#myModalNorm"><a name = 'reglink'>Register</a></button>
+<a id = "logoutbutton" href="{{ URL::to('logout') }}">Logout @if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</a>
 </div>
   </div><!-- /.container-fluid -->
 </nav>
 <div class = 'container'>
 <header class = 'jumbotron'>
-<h1 class = "h1"> {!! $title !!}</h1>
+<h1 class = "h1">Algorithmaths</h1>
 </header>
+<div id = 'messages'>
+@if (Session::has('message')) {{Session::get('message')}}@endif</h2>
+<div class = 'errorArea'>
+<p class="errors" >{{$errors->first('username')}} </p>
+<p class="errors">{{$errors->first('password')}} </p>
+<p class="errors">{{$errors->first('first_name')}} </p>
+<p class="errors">{{$errors->first('last_name')}} </p>
+<p class = "errors">@if (Session::has('error_message')) {{Session::get('error_message')}}@endif</p>
+</div>
+</div>
+
+<br />
 <section class = 'nav'>
 <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a data-target="#home" data-toggle="tab"><b>Home</b></a></li>
@@ -75,17 +84,20 @@
 <p class="errors">{{$errors->first('username')}}</p>
 {!! Form::password('password',array('id'=>'passwordtxt','class'=>'form-control span6', 'placeholder' => 'Please Enter your Password')) !!}
 <p class="errors">{{$errors->first('password')}}</p>
+{!! Form::submit('Login', array('id'=>'loginbutton','class'=>'btn btn-secondary form-control')) !!}
+        {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
+        {!! Form::close() !!}
 </div>
 </div>           <!-- Modal Footer -->
             <div class="modal-footer">
 
         <div class = "form-group">
         <td id = "buttons">
-        {!! Form::submit('Login', array('id'=>'loginbutton','class'=>'btn btn-secondary form-control')) !!}
+
 <br />
-        {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
+
         </td>
-{!! Form::close() !!}
+
         </div>
         
             </div>
@@ -111,15 +123,25 @@
                 </h4>
             </div>
             
+
             <!-- Modal Body -->
             <div class="modal-body">
-                
-                {!! Form::open(['route' => 'register']) !!}
+               
+
+
 <div class = "form-group">
+ {!! Form::open(['route' => 'register']) !!}
 {!! Form::label('firstname','Firstname: ') !!}{!! Form::text('first_name',"",['class' => 'form-control']) !!}
+ <p class="errors">{{$errors->first('first_name')}}</p>
 {!! Form::label('lastname', 'Lastname: ') !!}{!! Form::text('last_name',"",['class' => 'form-control']) !!}
+<p class="errors">{{$errors->first('last_name')}}</p>
 {!! Form::label('username','Username: ') !!}{!! Form::text('username',"",['class' => 'form-control']) !!}
+<p class="errors">{{$errors->first('username')}}</p>
 {!! Form::label('password', 'Password: ') !!}{!! Form::password('password',"",['class' => 'form-control']) !!}
+<p class="errors">{{$errors->first('password')}}</p>
+<a name = 'create'>{!! Form::submit('Create', ['class' => 'btn btn-secondary form-control']) !!}</a>
+{!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
+{!! Form::close() !!}
 
 </div>
 </div>
@@ -129,25 +151,29 @@
 
 				<div class = "form-group">
         <td id = "buttons">
-				{!! Form::submit('Create', ['class' => 'btn btn-secondary form-control']) !!}
+				
 <br />
-			  {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
         </td>
-{!! Form::close() !!}
+
 				</div>
 				
             </div>
         </div>
+        
     </div>
 </div>
 <!-- Post Info -->
 <div id = "Home">
 
 <h2>Welcome to Algorithmaths</h2><h2 class = "AuthUser">@if (Session::has('flash_message')) {{Session::get('flash_message')}}@endif</h2>
-<p class = 'justify'>{!! $text !!}</p>
+<p class = 'justify'>This site aims to guide you in learning recurrence relations
+        and proof by mathematical induction. You can learn the recurrence relations 
+        and proof by mathematical induction as a non-registered user although
+        if you decide to register you can test yourself on the subject from a beginner
+        level right up to a more difficult level.</p>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="carousel slide" id="carousel-462084">
         <ol class="carousel-indicators">
           <li data-slide-to="0" data-target="#carousel-462084">
@@ -246,14 +272,6 @@
       </div>
     </div>
   </div>
-  @if (Auth::user())
-  @if($feedback !== '')
-<h2>Recent Feedback</h2>
-  @foreach($feedback as $feed)
-<p>{{$feed->user->username}} - {{$feed->review}}</p>
-  @endforeach
-@endif
-@endif
 
 </div>
 </div>
@@ -567,32 +585,36 @@ will be asked to enter the sequence once you submit.
     <p>If you struggle, hover over the question mark for a hint.</p>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
     <br />
-<table id ='recTable'>
-  <tr>
-    <td>
-  <label>U(n) = </label></td>
-    <td><input type = "text" id = "firstnumber" class ="numberInput"  readonly="true" value = "1"></input></td>
-  <td><label>U(n-1) +</label></td>
-  <td><input type = "text" id = "secondnumber" class ="numberInput"></input></td>
-  <td><label>n +</label></td>
-  <td><input type = "text" id = "thirdnumber" class ="numberInput"></input></td>
-  </tr>
-  <tr>
-    <td><label>U(1) =</label></td>
-    <td><input type = "text" id = "initialnumber" class ="numberInput"></input></td> 
-  <td><span id="errmsg"></span></td>
-  <td id = 'buttons'></td>
-  <td></td>
-  </tr>
- <tr>
-    <td></td>
-    <td></td> 
-  <td> <button id = "recsubmit">Submit</button></td>
-  <td></td>
-  <td></td>
-  </tr>
+<table id='recTable'>
+    <tr>
+        <td>
+            <label>U(n) = </label></td>
+        <td><input type="text" id="firstnumber" class="numberInput" readonly="true" value="1"></input>
+        </td>
+        <td><label>U(n-1) +</label></td>
+        <td><input type="text" id="secondnumber" class="numberInput"></input>
+        </td>
+        <td><label>n +</label></td>
+        <td><input type="text" id="thirdnumber" class="numberInput"></input>
+        </td>
+    </tr>
+    <tr>
+        <td><label>U(1) =</label></td>
+        <td><input type="text" id="initialnumber" class="numberInput"></input>
+        </td>
+        <td><span id="errmsg"></span></td>
+        <td id='buttons'></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td> <button id="recsubmit"><a name =  'recsubmit'>Submit</a></button></td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
     </div>
     <div class="col-md-3">
@@ -635,14 +657,14 @@ will be asked to enter the sequence once you submit.
     <strong>You got </strong> {{ Session::get('length', '') }} <strong> Correct!! </strong>
     </div>
 @endif
-
-{!! Form::open(['route' => 'test.store']) !!}
+@if(Auth::user())
+{!! Form::open(['route' => 'test.store'])!!}
 
 @foreach ($questions as $question)
 <div class="question">
     <p>{{$question->question}}</p>
     @foreach ($question->answer->shuffle() as $answer) 
-        <p><input type="radio" name={{ substr($question->question, 0, 10) }} value={{$answer->correct_answer}} required>{{$answer->answer}}</input></p>
+        <p><input type="radio" id = '{{ substr($question->question, 0, 9) }}' name='{{ substr($question->question, 0, 9) }}' value='{{$answer->correct_answer}}' required>{{$answer->answer}}</input></p>
     @endforeach
 </div>
 @endforeach
@@ -650,7 +672,7 @@ will be asked to enter the sequence once you submit.
 <p>{!! Form::submit('Submit', array('id'=>'submitbutton','class'=>'send-btn')) !!}</p>
 
 {!! Form::close()!!}
-
+@endif
 
 </div>
 
@@ -659,16 +681,22 @@ will be asked to enter the sequence once you submit.
 <div id = "Review" class ='row'>
 <h1>Progress</h1>
 
-<table id = 'resultsTable' class = 'col-md-6'>
+
+
 @if (Auth::user())
 
+<table id = 'resultsTable' class = 'col-md-6'>
 <tr><th>Date</th><th>Result</th></tr>
 @foreach($userResult as $res)
 @foreach($res->result as $all)
 <tr><td>{{$all->created_at}}</td>
-<td>{{$all->result}}</td></tr>
+<td>{{$all->result}}</td>
+
 @endforeach
 @endforeach
+
+</tr>
+
 </table>
 <div class ='col-md-6'>
 @endif
@@ -704,47 +732,9 @@ var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(
 </div>
 
 
-<div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span id = "closeicon" aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Feedback
-                </h4>
-            </div>
-            
-            <!-- Modal Body -->
-            <div class="modal-body">
-                
-                {!! Form::open(['route' => 'feedback']) !!}
-<div class = "form-group">
-  {!! Form::label('feedback','Feedback: ') !!}{!! Form::text('feedback',"",['class' => 'form-control']) !!}
-</div>
-</div>
-            <!-- Modal Footer -->
-            <div class="modal-footer">
 
-        <div class = "form-group">
-        <td id = "buttons">
-        {!! Form::submit('Submit', ['class' => 'btn btn-secondary form-control']) !!}
-<br />
-        {!! Form::submit('Close', ['class' => 'btn btn-secondary form-control']) !!}
-        </td>
-{!! Form::close() !!}
-        </div>
-        
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
-<footer class = 'footer'><a id="modalfeedback" href="#modal-container" role="button" class="btn" data-toggle="modal" data-target="#feedbackmodal"><b>Leave FeedBack</b></a>
+<footer class = 'footer'>
 </footer>
 </html>

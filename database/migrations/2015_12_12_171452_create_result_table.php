@@ -14,11 +14,13 @@ class CreateResultTable extends Migration
     {
      Schema::create('result', function($table) {
 	 $table -> increments('result_id');
-     $table->integer('id')->length(10)->unsigned();
+     $table->integer('user_id')->length(10)->unsigned();
+     $table->integer('result')->length(10);
+
      $table->timestamps();
 		});
 	 Schema::table('result', function($table) {
-     $table->foreign('id')->references('id')->on('user')->onDelete('cascade');
+     $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
     });
 	}
 

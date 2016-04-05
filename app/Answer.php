@@ -15,5 +15,9 @@ class Answer extends Model
         return $this->belongsTo('Algorithmaths\Question','question_id')->distinct();
     }
 
+    public function userResult()
+    {
+    	return $this->belongsToMany('Algorithmaths\UserAnswer','answer_id');
+    }
 
 }

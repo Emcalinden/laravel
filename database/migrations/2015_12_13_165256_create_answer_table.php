@@ -13,18 +13,17 @@ class CreateAnswerTable extends Migration
     public function up()
     {
      Schema::create('answer', function($table) {
-	 $table -> increments('answer_id');
-	 $table-> string('answer');
-    $table->integer('question_id')->unsigned();
-;
-     $table -> boolean('correct_answer');
-     $table->timestamps();
-	});
-    Schema::table('answer', function($table) {
-     $table->foreign('question_id')->references('question_id')->on('question')->onDelete('cascade');
-    });
+        $table -> increments('answer_id');
+        $table-> string('answer');
+        $table->integer('question_id')->unsigned();
+        $table -> boolean('correct_answer');
+        $table->timestamps();
+        });
 
-    }
+     Schema::table('answer', function($table) {
+        $table->foreign('question_id')->references('question_id')->on('question')->onDelete('cascade');
+    });
+ }
     
 
     /**

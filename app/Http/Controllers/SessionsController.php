@@ -46,27 +46,23 @@ class SessionsController extends Controller
      */
     public function store(Request $request)
     {
-      $username = Input::get('username');
+        $username = Input::get('username');
         $pass = Input::get('password');
-
-        //$password = Hash::make($pass);
 
         $credentials = array(
         'username' => $username,
         'password' => $pass
         );
 
-
         if(Auth::attempt($credentials)) {
-
-$name = Auth::user()->first_name;
-$name = ucfirst($name);  
+            $name = Auth::user()->first_name;
+            $name = ucfirst($name);  
             \Session::put('flash_message',$name);
+
             return Redirect::to('index');
             Session::save();
-        }
-        else {
-             return 'auth failed';
+        }else {
+             return Redirect::to('index')->withErrors('The log In details you entered were incorrect');
         }       
         
     

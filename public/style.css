@@ -189,12 +189,12 @@ input[type=radio]{
 #recImage3 {
     background-image: url(disk3.jpg);
 }
-#test1,
-#test2,
-#test3,
-#test4,
-#test5,
-#test6 {
+#diff1,
+#diff2,
+#diff3,
+#diff4,
+#diff5,
+#diff6 {
     width: 80%;
     height: 20px;
     text-align: right;
@@ -300,7 +300,8 @@ margin:0 auto;
     margin: 0 auto;
 }
 .col-md-4 {
-    width: 360px;
+    width: 390px;
+    margin: 0 auto;
 }
 #hometext{
     width:450px;
@@ -351,7 +352,7 @@ h2{
 #recTable {
     margin: 0 auto;
     margin-bottom: 50px;
-    width:100%;
+    width:;
 }
 label{
     width:auto;
@@ -412,6 +413,23 @@ table.inductionTable td {
 .table {
     margin: 0 auto;
 }
+.errors{
+    margin:0 auto;
+    text-align: center;
+    float:left;
+}
+header{
+    margin:0 auto;
+}
+.errorArea{
+    height:auto;
+    width:auto;
+    color:red;
+}
+#messages{
+    margin:0 auto;
+    text-align: center;
+}
 .numberInput,
 .sequenceval,
 .guess,
@@ -422,8 +440,8 @@ table.inductionTable td {
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
     padding: 15px;
     background: rgba(255, 255, 255, 0.0);
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     background-color: white;
 }
 td {

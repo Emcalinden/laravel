@@ -14,6 +14,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @return \Illuminate\Foundation\Application
      */
+
+    public function setUp()
+{
+    parent::setUp(); // Don't forget this!
+ 
+    $this->prepareForTests();
+}
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
@@ -22,4 +29,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+    private function prepareForTests()
+{
+    Artisan::call('migrate');
+    Mail::pretend(true);
+}
+
 }

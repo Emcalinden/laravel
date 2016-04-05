@@ -4,14 +4,22 @@ namespace Algorithmaths\Http\Controllers;
 
 use Request;
 
+
 use Algorithmaths\Http\Requests;
 use Algorithmaths\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Auth;
-use View;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use View;
 use Algorithmaths\User;
+use Algorithmaths\Question;
+use Algorithmaths\Answer;
+use Algorithmaths\Result;
+use Algorithmaths\Feedback;
+use Algorithmaths\Test;
+use Illuminate\Support\Facades\Input;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -21,50 +29,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-public function login() {
-    // Getting all post data
-    $data = Request::all();
-    // Applying validation rules.
-    $rules = array(
-		'username' => 'required|min:2',
-		'password' => 'required|min:2',
-	     );
-    $validator = Validator::make($data, $rules);
-    if ($validator->fails()){
-      // If validation falis redirect back to login.
-      return Redirect::to('/index')->withInput(Request::except('password'))->withErrors($validator);
-    }
-    else {
-      $userdata = array(
-		    'username' => Request::get('username'),
-		    'password' => Request::get('password')
-		  );
-      // doing login.
-      if (Auth::validate($userdata)) {
-        if (Auth::attempt($userdata)) {
-          return Redirect::intended('/');
-        }
-      } 
-      else {
-        // if any error send back with message.
-        Session::flash('error', 'Something went wrong'); 
-        return Redirect::to('index');
-      }
-    }
-  }
-  
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //if (Auth::check()) return redirect::to('session');
+        return View::make('sessions.create');
     }
 
     /**
@@ -75,42 +43,27 @@ public function login() {
      */
     public function store(Request $request)
     {
-        //
-    }
+        $username = Input::get('username');
+        $pass = Input::get('password');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $credentials = array(
+        'username' => $username,
+        'password' => $pass
+        );
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if(Auth::attempt($credentials)) {
+            $name = Auth::user()->first_name;
+            $name = ucfirst($name);  
+            \Session::put('flash_message',$name);
+            
+            return Redirect::to('index');
+            Session::save();
+        }else {
+            \Session::put('error_message','The log In details you entered were incorrect');
+             return Redirect::to('index');
+        }
+    } 
+    
 
     /**
      * Remove the specified resource from storage.
@@ -118,8 +71,10 @@ public function login() {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+        Session::flush();
+        return Redirect::to('index');
     }
 }
