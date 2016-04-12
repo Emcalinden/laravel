@@ -12,7 +12,7 @@
 */
 
 Route::get('logout','LoginController@destroy');
-Route::post('register', [ 'as' => 'register', 'uses' => 'WelcomeController@store']);
+Route::post('register', [ 'as' => 'register', 'uses' => 'SessionsController@store']);
 //Route::post('feedback', [ 'as' => 'feedback', 'uses' => 'FeedbackController@create']);
 Route::get('index', 'WelcomeController@index');
 Route::get('review', 'QuestionsController@index');

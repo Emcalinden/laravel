@@ -16,6 +16,7 @@ use Algorithmaths\Question;
 use Algorithmaths\Answer;
 use Algorithmaths\Result;
 use Algorithmaths\Feedback;
+use Algorithmaths\UserAnswer;
 use Illuminate\Support\Facades\Input;
 use Hash;
 
@@ -26,21 +27,31 @@ class WelcomeController extends Controller
     { 
        
         $questions = Question::limit(10)->with('answer')->get();
-dd($questions);
-
+//dd($questions);
         Session::put('key', $questions);
         $answers = Answer::with('question')->orderBy(\DB::raw('RAND()'))->get();
         $dataArray=[];
         $labelArray=[];
         if(Auth::check()){
         $userResult = User::with('result')->where('id',Auth::user()->id)->get();
+        $useranswer = UserAnswer::limit(5)->orderBy('user_answer_id','DESC')->get();
+
         foreach($userResult as $res){
         foreach($res->result as $all){
         $dataArray[] = (int)$all->result;
         $labelArray[] = $all->result_id;
         }
     }
-    return View::make('pages.index',compact('title','text','questions','answers','userResult','dataArray','labelArray'));
+
+        $useranswer = UserAnswer::limit(5)->orderBy('user_answer_id','DESC')->get();
+        $userquestion = [];
+        $userAnswer = [];
+         foreach($useranswer as $answers){
+            //$userquestion[] = Question::where('question_id',$answers->question_id)->get();
+            $userAnswer[] = Answer::with('question')->where('answer_id',$answers->answer_id)->get();
+         }
+
+    return View::make('pages.index',compact('title','text','questions','answers','userResult','dataArray','labelArray','userAnswer','userquestion'));
     }
     else
     {

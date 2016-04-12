@@ -7,7 +7,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Algorithmaths\Result;
 use Algorithmaths\User;
 use Algorithmaths\Question;
-use Algorithmath\Answer;
 
 
 class UserAnswer extends Model

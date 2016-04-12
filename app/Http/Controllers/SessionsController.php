@@ -46,24 +46,35 @@ class SessionsController extends Controller
      */
     public function store(Request $request)
     {
-        $username = Input::get('username');
-        $pass = Input::get('password');
-
-        $credentials = array(
-        'username' => $username,
-        'password' => $pass
+       $password=Input::get('password');
+        $data = array(
+        'username' => Input::get('username'),
+        'first_name' => Input::get('first_name'),
+        'last_name' => Input::get('last_name'),
+        'password' => Input::get('password')
+        );              
+        $rules = array(
+            'first_name' => 'required|min:1',
+            'last_name' => 'required|min:1',
+            'username' => 'required|unique:user|min:3',
+            'password' => 'required|min:5'
         );
+        $validator = Validator::make($data, $rules);        
+        if ($validator->fails()) {
+            return Redirect::to('index')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            $user = new User;  
+            $user->first_name = Input::get('first_name');
+            $user->last_name = Input::get('last_name');
+            $user->username = Input::get('username');
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
 
-        if(Auth::attempt($credentials)) {
-            $name = Auth::user()->first_name;
-            $name = ucfirst($name);  
-            \Session::put('flash_message',$name);
-
+            Session::flash('message', 'Successfully created account! Log in to try out the Test!');
             return Redirect::to('index');
-            Session::save();
-        }else {
-             return Redirect::to('index')->withErrors('The log In details you entered were incorrect');
-        }       
+        }
         
     
         }

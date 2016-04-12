@@ -97,9 +97,6 @@ $(document).ready(function() {
 
         }
     });
-
-
-
     $("#move2, #move3").hide();
     $("#closedHelp").hide();
     $(".disks").click(function(e) {
@@ -120,7 +117,6 @@ $(document).ready(function() {
                 $("#move3").show();
                 $("#move2, #move1").hide();
                 break;
-
         }
     });
     $("#proofbutton").hide();
@@ -132,6 +128,7 @@ $(document).ready(function() {
     $numbers = [];
     $closedformAnswers = [];
     $linclosedformAnswers = [];
+    $userinput = [];
     var count = 0;
     $("#findDiff").hide();
 
@@ -150,6 +147,9 @@ $(document).ready(function() {
     $thirdnumber = null;
     $initialnumber = null;
     $answers.length = 0;
+    $linclosedformAnswers.length = 0;
+    $closedformAnswers.length = 0;
+    $userinput.length = 0;
 
     $('#vertseq').on('keyup', '.sequenceval', function() {
       var index = $(".sequenceval").index(this);
@@ -234,12 +234,18 @@ $(document).ready(function() {
         }
         $("#buttons #clear").click(function() {
             $("#hint").hide();
-            $answers = [];
+           // $answers = [];
             $("#clear").hide();
-            $numbers = [];
-            $userinput = [];
-            $closedformAnswers = [];
-            $linclosedformAnswers = [];
+            $numbers.length = 0;
+           // $userinput = [];
+           // $closedformAnswers = [];
+           // $linclosedformAnswers = [];
+
+    $answers.length = 0;
+    $linclosedformAnswers.length = 0;
+    $closedformAnswers.length = 0;
+    $userinput.length = 0;
+
             $("#closedHelp").hide();
             $(".recurrenceTable .result").empty();
             $(".recurrenceTable #closedFormArea").empty();
@@ -353,7 +359,7 @@ $(document).ready(function() {
 
             var reccount = 0;
             $("#proofbutton").hide();
-            $('#closedFormArea').on('keyup', '.guess', function() {
+            $('#closedFormArea').on('input', '.guess', function() {
                 $("#checkAny").empty();
                 var value = $(this).val();
                 var aID = $(this).attr("id");
@@ -361,16 +367,25 @@ $(document).ready(function() {
                     $(this).css('border', '3px solid green');
                     $(this).prop("readonly", true);
                     $closedformAnswers.push(value);
+                     $.unique($closedformAnswers);
+                    if ($closedformAnswers.length == 3) {
+                    $('#checkAny').empty();
+                    if($("#closedformArea").has("#checkAny")){
+                    }
+                    $('#closedFormArea').append("<div id = 'check'></div>");
+                    $('#check').append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
+                    if ( $('#check').children().length > 0 ) {
+                        $("#check").empty();
+                        $('#check').append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
+                      }
+                    move("#checkAny");   
+                }
                 } else {
                     $(this).css('border', '3px solid red');
-                }
-                if ($closedformAnswers.length == 3) {
-                    $('#checkAny').empty();
-                    $('#closedFormArea').append("<br /><div id = 'checkAny'>Enter a value of n:<input type ='text' id ='term'/>= <div id ='termAns'></div></div>");
-                    move("#checkAny");
-                }
+                }     
             });
         }
+
     });
     $("#closedFormArea").on("keyup", "#term", function() {
         $("#term").keypress(function(e) {
@@ -446,11 +461,9 @@ $(document).ready(function() {
                     $("#step3Eq").append("       = " + $a + "k&#178; + " + b + "(k) " + operator + c + " + " + $secondnumber + "k +" + $secondnumber + " + " + $thirdnumber + " <br /><br />");
                     var simplified1 = b + $secondnumber;
                     var simplified2 = c + $secondnumber + $thirdnumber;
-
                     $("#step3Eq").append("       =" + $a + "k&#178; + " + simplified1 + "k +" + simplified2 + " <br /><br /><br /><br />");
                     $("#step3Eq").append("    T(k+1) = " + $a + "(k+1)&#178; + " + b + "(k+1) " + operator + c + " <br /><br />");
                     $("#step3Eq").append("     = " + $a + "(k&#178; + 2k + 1) +" + b + "k + " + b + " " + operator + c + " <br /><br />");
-
                     var multiply1 = a * 2;
                     var simplified3 = b + c;
                     $("#step3Eq").append("     = " + $a + "k&#178; + " + multiply1 + "k + " + a + " +" + b + "k + " + simplified3 + " <br /><br />");
@@ -462,7 +475,6 @@ $(document).ready(function() {
                     $("#MathInduction").show();
                 } else {
                     $("#step2Eq").append("They are not equal<br /><br />");
-
                 }
 
             });
@@ -584,6 +596,18 @@ $(document).ready(function() {
         $('#myTab a[name="test"]').show();
     }
 
+
+    var result = $('strong').val();
+    if ($('#score').length == 0) {
+            $('#Home').show();
+            
+
+    }else{
+            $('#myTab a[name="test"]').tab('show');
+            $('#Test').show();
+            $('#Home').hide();
+
+    }
     $("a#modalmore").click(function() {
         $("#infobody").empty();
         $(".my-modal-title").empty();
@@ -599,5 +623,6 @@ $(document).ready(function() {
         });
 
     });
+
 
 });

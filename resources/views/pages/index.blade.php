@@ -39,13 +39,13 @@
 <h1 class = "h1">Algorithmaths</h1>
 </header>
 <div id = 'messages'>
-@if (Session::has('message')) {{Session::get('message')}}@endif</h2>
 <div class = 'errorArea'>
 <p class="errors" >{{$errors->first('username')}} </p>
 <p class="errors">{{$errors->first('password')}} </p>
 <p class="errors">{{$errors->first('first_name')}} </p>
 <p class="errors">{{$errors->first('last_name')}} </p>
-<p class = "errors">@if (Session::has('error_message')) {{Session::get('error_message')}}@endif</p>
+<p class = "errors">@if (Session::has('error_message')) {{Session::get('error_message')}} {{Session::forget('error_message')}}@endif</p>
+
 </div>
 </div>
 
@@ -654,17 +654,65 @@ will be asked to enter the sequence once you submit.
 @if(Session::has('success'))
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>You got </strong> {{ Session::get('length', '') }} <strong> Correct!! </strong>
+    <strong>You got </strong> <p id = 'score'>{{ Session::get('length', '') }}</p> <strong> Correct!! Your results are now saved in the Review area</strong>
+    <p>
+</p>
     </div>
-@endif
-@if(Auth::user())
-{!! Form::open(['route' => 'test.store'])!!}
+    @endif
+<button id = "results"class = 'btn btn-secondary' href = "#" data-toggle="modal" data-target="#resultsModal"><a name = 'resultLink'>See your last test Results</a></button>
+   
+<div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span id = "closeicon" aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Your Results
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+              @foreach($userAnswer as $answer)
+              @foreach($answer as $ans)
+              @if($ans->correct_answer == 0)
+              <?php $class='danger'; ?>
+              @elseif($ans->correct_answer == 1)
+              <?php $class='success'; ?>
+              @endif
+              <h4>{{$ans->question->question}}</h4>
+              <div class="alert alert-{{$class}}">
+              <p>{{$ans->answer}}
+              </p>
+              </div>       
+              @endforeach
+              @endforeach
+            </div>
+            </div>        
 
+        </div>
+    </div>
+
+
+@if(Auth::user())
+
+
+{!! Form::open(array(
+    'route' => 'test.store',
+    'method' => 'post',
+    'id' => 'form'
+) )!!}
 @foreach ($questions as $question)
+
 <div class="question">
     <p>{{$question->question}}</p>
     @foreach ($question->answer->shuffle() as $answer) 
-        <p><input type="radio" id = '{{ substr($question->question, 0, 9) }}' name='{{ substr($question->question, 0, 9) }}' value='{{$answer->correct_answer}}' required>{{$answer->answer}}</input></p>
+        <p><input type="radio"  id = '{{ $answer->answer_id }}' name='{{ substr($question->question, 0, 9) }}' value='{{$answer->answer}}' required>{{$answer->answer}}</input></p>
     @endforeach
 </div>
 @endforeach
@@ -680,8 +728,6 @@ will be asked to enter the sequence once you submit.
 
 <div id = "Review" class ='row'>
 <h1>Progress</h1>
-
-
 
 @if (Auth::user())
 
